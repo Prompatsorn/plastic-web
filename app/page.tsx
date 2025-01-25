@@ -1,7 +1,8 @@
-import Image from "next/image";
 
+import Image from "next/image";
 export default function Home() {
   return (
+
     <div className="w-full h-full">
       <div className="w-full relative">
         <Image
@@ -18,9 +19,8 @@ export default function Home() {
           </p>
         </div>
       </div>
-      <div>
-        test
-      </div>
+
     </div>
+
   );
 }
