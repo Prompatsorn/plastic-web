@@ -1,23 +1,592 @@
+"use client";
+
+import LoadIngPage from "@/components/loading";
 import Image from "next/image";
+import { useState, useRef, useEffect } from "react";
+
 
 export default function Home() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null); 
+  const [c1Image, setC1Image] = useState("/assets/c1.png");
+  const [c2Image, setC2Image] = useState("/assets/c2.png");
+  const [ylb1Image, setYlb1Image] = useState("/assets/yl1.png");
+  const [bluebImage, setBlueImage] = useState("/assets/blue.png");
+  const [greenImage, setGreenImage] = useState("/assets/green.png");
+  const [redImage, setRedImage] = useState("/assets/red.png");
+  const [bottleImage, setBottleImage] = useState("/assets/bottle.png"); 
+  const [bottleSearchImage, setBottleSearchImage] = useState("/assets/bottlesearch.png");
+  const [gImage] = useState("/assets/g220.gif");
+  const [showBig1, setShowBig1] = useState(true);
+  const [showBig2, setShowBig2] = useState(true);
+  const [showBig3, setShowBig3] = useState(true);
+  const [showBig4, setShowBig4] = useState(true);
+  const [showBig5, setShowBig5] = useState(true);
+  const allImagesClicked = !showBig1 && !showBig2 && !showBig3 && !showBig4 && !showBig5;
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const [carPosition, setCarPosition] = useState(0); // ตำแหน่งเริ่มต้นของรถ
+  const [isFalling, setIsFalling] = useState(false);
+  const [xPos, setXPos] = useState(0); // ตำแหน่งรถ
+  const [moved, setMoved] = useState(false); // ป้องกันขยับซ้ำ
+  const [isLocked, setIsLocked] = useState(false); // ล็อกหน้าจอขณะรถเคลื่อนที่
+
+  
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20 && !moved) {
+        setIsLocked(true); // 🔒 ล็อกการเลื่อน
+        setXPos(300); // 🚗 ขยับไป 300px
+        setMoved(true); // กันไม่ให้ขยับซ้ำ
+
+        // 📜 หลังจาก 1 วินาที ให้เลื่อนหน้าเว็บลงไปที่ตำแหน่ง 2000px แล้วปลดล็อก
+        setTimeout(() => {
+          window.scrollTo({
+            top: 2000,
+            behavior: "smooth",
+          });
+
+          // 🔓 ปลดล็อกหลังจากเลื่อนเสร็จ
+          setTimeout(() => {
+            setIsLocked(false);
+          }, 1000);
+        }, 1000);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [moved]);
+
+  useEffect(() => {
+    if (isLocked) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isLocked]);
+
+  const handleSealClick = () => {
+    setIsFalling(true);
+    setTimeout(() => {
+      setIsFalling(false); // ซ่อนหลังจาก 5 วินาที
+    }, 5000);
+  };
+
+  const handleScrollTop = () => {
+    window.scrollTo({ top: 850, behavior: "smooth" }); // เลื่อนขึ้นไปบนสุด
+  };
+  const handleScrollDown = () => {
+    window.scrollTo({ top: 5000, behavior: "smooth" }); // เลื่อนไปที่ตำแหน่ง 5000px
+  };
+  const handleScrollToBottom = () => {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" }); // เลื่อนไปด้านล่างสุดของหน้า
+  };
+
+
+  const moveCar = () => {
+    setCarPosition((prev) => {
+      if (prev === 0) {
+        // ถ้าอยู่ที่จุดเริ่มต้น ให้เลื่อนไป 1300px
+        return 1300;
+      } else if (prev === 1300) {
+        // ถ้าอยู่ที่ 1300px ให้กลับไปที่จุดเริ่มต้น
+        return 0;
+      }
+      return prev;
+    });
+  };
+
+  const toggleMenu = () => {
+    setIsMenuVisible(!isMenuVisible); // เปลี่ยนค่าจะแสดง/ซ่อนรูปภาพ
+  };
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+    };
+  }, []);
+  
+
+  const togglePlay = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const toggleC1Image = () => {
+    setC1Image((prev) => (prev === "/assets/c1.png" ? "/assets/cb1.png" : "/assets/c1.png"));
+  };
+
+  const toggleC2Image = () => {
+    setC2Image((prev) => (prev === "/assets/c2.png" ? "/assets/cb2.png" : "/assets/c2.png"));
+  };
+
+  const toggleYlb1Image = () => {
+    setYlb1Image((prev) => (prev === "/assets/yl1.png" ? "/assets/ylb1.png" : "/assets/yl1.png"));
+  };
+
+  const toggleBlueImage = () => {
+    setBlueImage((prev) => (prev === "/assets/blue.png" ? "/assets/blueb.png" : "/assets/blue.png"));
+  };
+
+  const toggleGreenImage = () => {
+    setGreenImage((prev) => (prev === "/assets/green.png" ? "/assets/greenb.png" : "/assets/green.png"));
+  };
+
+  const toggleRedImage = () => {
+    setRedImage((prev) => (prev === "/assets/red.png" ? "/assets/redb.png" : "/assets/red.png"));
+  };
+
+  const toggleBottleImage = () => {
+    setBottleImage((prev) => (prev === "/assets/bottle.png" ? "/assets/bottleblack.png" : "/assets/bottle.png"));
+  };
+  const toggleBottleSearchImage = () => {
+    setBottleSearchImage((prev) => prev === "/assets/bottlesearch.png" ? "/assets/bottlesearchblack.png" : "/assets/bottlesearch.png");
+  };
+  
+  
+
   return (
-    <div className="w-full h-full">
-      <div className="w-full relative">
+    <div id="home" className="w-full relative">
+      <LoadIngPage />
+  
+      <Image
+        src="/assets/home.jpg"
+        alt="home"
+        width={1920}
+        height={1000}
+        priority
+      />
+      <Image
+        src="/assets/topic.png"
+        alt="topic"
+        width={600}
+        height={500}
+        className="absolute top-[900px] right-[500px]"
+      />
+      <Image
+        src="/assets/paiwood.png"
+        alt="paiwood"
+        width={150}
+        height={150}
+        className="absolute top-[1500px] right-[770px]"
+      />
+         <Image
+      src="/assets/car.png"
+      alt="car"
+      width={150}
+      height={150}
+      className="absolute top-[1300px] right-[1050px]"
+      style={{
+        position: "absolute",
+        transform: `translateX(${xPos}px)`,
+        transition: "transform 1s ease-in-out"
+      }}
+    />
+       <Image
+        src="/assets/down.png"
+        alt="down"
+        width={70}
+        height={70}
+        className="absolute top-[1500px] right-[680px] animate-[bounce_1s_infinite]"
+      />
+
+      <button
+        onClick={togglePlay}
+        className="fixed top-24 right-4 w-12 h-12 bg-transparent z-50 flex flex-col items-center gap-2"
+      >
         <Image
-          src={'/assets/pic1.jpg'}
-          alt="images"
-          width={1920}
-          height={1000}
+          src={isPlaying ? "/assets/sound1.png" : "/assets/sound-stop.png"}
+          alt="sound icon"
+          width={50}
+          height={50}
         />
-        <div className="absolute top-32 right-32 text-white text-3xl font-bold cursor-pointer text-right">
-          <p className="text-black text-center text-5xl">
-            การเดินทาง<br />
-            ของขวดพลาสติก<br />
-            จากบ้านสู่การรีไซเคิล
-          </p>
-        </div>
+      </button>
+
+      <div
+        onClick={toggleMenu}
+        className="fixed top-4 right-4 w-12 h-12 bg-transparent z-50 flex flex-col items-center gap-2 cursor-pointer "
+      >
+        <Image
+          src="/assets/menu.png"
+          alt="menu"
+          width={200}
+          height={200}
+        />
       </div>
+
+    
+    <div>
+     
+    {isMenuVisible && (
+  <div className="fixed top-4 right-20 bg-transparent z-50 flex flex-col items-center ">
+    
+      <Image
+        src="/assets/main.png"
+        alt="main"
+        width={200}
+        height={200}
+        className="cursor-pointer image-hover-scale"
+        onClick={handleScrollTop}
+      />
+     <Image
+            src="/assets/effect.png"
+            alt="effect"
+            width={200}
+            height={200}
+            className="cursor-pointer image-hover-scale"
+            onClick={handleScrollDown} // กดแล้วเลื่อนไปที่ตำแหน่ง 4150px
+          />
+   <Image
+            src="/assets/howto.png"
+            alt="howto"
+            width={200}
+            height={200}
+            className="cursor-pointer image-hover-scale"
+            onClick={handleScrollToBottom} // กดแล้วเลื่อนไปหน้าสุดท้าย
+          />
+  </div>
+)}
     </div>
+    
+        <audio 
+          ref={audioRef} 
+          src="/assets/music.mp3" 
+          loop 
+        />
+
+        <div className="relative">
+          <Image 
+            src="/assets/water2.jpg" 
+            alt="images" 
+            width={1920} 
+            height={1000} 
+          />
+           <Image
+            src="/assets/bt.png"
+            alt="images"
+            width={500}
+            height={500}
+            className="absolute top-[200px] left-[600px] transform  transition-opacity duration-300 hover:opacity-0 animate-[wiggle_1s_ease-in-out_infinite]"
+          />
+          <Image
+            src="/assets/textbt.png"
+            alt="image"
+            width={1500}
+            height={1500}
+            className="absolute top-2/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-opacity duration-300 opacity-0 hover:opacity-100"
+          />
+        </div>
+
+        <div className="relative mt-0 flex flex-col items-center">
+          <Image 
+            src="/assets/what.jpg" 
+            alt="New Image"
+            width={1920}
+            height={1000} 
+            className="w-full h-full" 
+          />
+          <Image 
+        src="/assets/question.png" 
+        alt="question"
+        width={100}
+        height={100} 
+        className="absolute top-[200px] right-[500px] animate-[wiggle_0.5s_ease-in-out_infinite]"
+/>
+
+          <div className="absolute top-96 right-20 flex flex-col items-center gap-6">
+  <Image 
+    src={c1Image} 
+    alt="c1 image" 
+    width={500} 
+    height={500} 
+    onClick={toggleC1Image} 
+    className="cursor-pointer image-hover-scale hover:opacity-80 active:scale-95 transition-all" 
+    title="คลิกเพื่อเลือก C1 Image"  // เพิ่ม tooltip เมื่อ hover
+  />
+  <Image 
+    src={c2Image} 
+    alt="c2 image" 
+    width={500} 
+    height={500} 
+    onClick={toggleC2Image} 
+    className="cursor-pointer image-hover-scale hover:opacity-80 active:scale-95 transition-all" 
+    title="คลิกเพื่อเลือก C2 Image"  // เพิ่ม tooltip เมื่อ hover
+  />
+</div> 
+        </div>
+
+        <div className="relative mt-0">
+          <Image 
+            src="/assets/wall3.jpg" 
+            alt="wall3" 
+            width={1920} 
+            height={1000} 
+            className="object-cover w-full h-full" 
+          />
+          <Image 
+            src={ylb1Image} 
+            alt="ylb1 image" 
+            width={250} 
+            height={250} 
+            className="absolute left-[150px] top-44 object-cover image-hover-scale" 
+            onClick={toggleYlb1Image} 
+          />
+          <Image 
+            src={bluebImage} 
+            alt="blue" 
+            width={250} 
+            height={250} 
+            className="absolute left-[480px] top-44 object-cover transform  rotate-10 image-hover-scale" 
+            onClick={toggleBlueImage} 
+          />
+          <Image 
+            src={greenImage} 
+            alt="green" 
+            width={250} 
+            height={250} 
+            className="absolute right-[500px] top-44 object-cover transform rotate-10 image-hover-scale" 
+            onClick={toggleGreenImage} 
+          />
+          <Image 
+            src={redImage} 
+            alt="red" 
+            width={250} 
+            height={250} 
+            className="absolute right-[160px] top-44 object-cover transform rotate-10 image-hover-scale " 
+            onClick={toggleRedImage} 
+          />
+        </div>
+
+        <div className="relative mt-0">
+        <Image 
+            src="/assets/garbage.jpg" 
+            alt="garbage" 
+            width={1920} 
+            height={1000} 
+            className="object-cover w-full h-full" 
+          />
+          <Image 
+            src={bottleImage} 
+            alt="bottle" 
+            width={800} 
+            height={800} 
+            className="absolute top-56 left-52 image-hover-scale" 
+            onClick={toggleBottleImage}
+          />
+          <Image 
+            src={bottleSearchImage} 
+            alt="bottlesearch" 
+            width={1000} 
+            height={1000} 
+            className="absolute top-[750px] left-52 cursor-pointer image-hover-scale" 
+            onClick={toggleBottleSearchImage} 
+          />
+           <div className="relative mt-0">
+          <Image 
+            src="/assets/tale.jpg" 
+            alt="tale" 
+            width={1920} 
+            height={1000} 
+            className="object-cover w-full h-full" 
+          />
+          <Image 
+          src={gImage} 
+          alt="g220" 
+          width={400} 
+          height={400} 
+          className="absolute top-[480px] left-24 cursor-pointer" 
+        />
+        <Image 
+          src="/assets/gback220.gif" 
+          alt="gback220" 
+          width={400} 
+          height={400} 
+          className="absolute top-[480px] left-24 cursor-pointer transition-opacity duration-300 opacity-0 hover:opacity-100" 
+        />
+        <Image 
+          src="/assets/openbottle.gif" 
+          alt="openbottle" 
+          width={400} 
+          height={400} 
+          className="absolute top-[1400px] right-28 cursor-pointer transition-opacity duration-300 hover:opacity-0" 
+        />
+        <Image 
+          src="/assets/openbottleback.gif" 
+          alt="openbottleback" 
+          width={400} 
+          height={400} 
+          className="absolute top-[1400px] right-28 cursor-pointer transition-opacity duration-300 opacity-0 hover:opacity-100" 
+        />
+        <Image 
+          src="/assets/tao.gif" 
+          alt="openbottle" 
+          width={400} 
+          height={400} 
+          className="absolute top-[1750px] right-[850px] cursor-pointer transition-opacity duration-300 hover:opacity-0" 
+        />
+        <Image 
+          src="/assets/taoback.gif" 
+          alt="openbottleback" 
+          width={400} 
+          height={400} 
+          className="absolute top-[1750px] right-[850px] cursor-pointer transition-opacity duration-300 opacity-0 hover:opacity-100" 
+        />
+        <div className="relative mt-0">
+          <Image 
+            src="/assets/beach.jpg" 
+            alt="beach" 
+            width={1920} 
+            height={1000} 
+            className="object-cover w-full h-full" 
+          />
+          <div>
+      {/* Seal */}
+      <Image
+        src="/assets/seal.png"
+        alt="seal"
+        width={500}
+        height={500}
+        className="absolute top-[1200px] left-[200px] cursor-pointer transition-opacity duration-300 animate-[wiggle_1s_ease-in-out_infinite]"
+        onClick={handleSealClick}
+      />
+
+{/* Big images */}
+{["big1", "big2", "big3", "big4", "big5", "big2", "big3", "big1"].map((name, index) => (
+  <Image
+    key={index}
+    src={`/assets/${name}.png`}
+    alt={name}
+    width={150}
+    height={150}
+    className={`absolute top-[1000px] ${index >= 6 ? `right-[${index === 6 ? 20 : 200}px]` : `left-[${200 + index * 200}px]`} 
+      cursor-pointer transition-all duration-[2000ms] ${isFalling ? "translate-y-[800px] opacity-0" : ""}`}
+  />
+))}
+
+    </div>
+          <Image 
+            src="/assets/clock.gif" 
+            alt="clock" 
+            width={400} 
+            height={400} 
+            className="absolute top-[500px] left-[250px] cursor-pointer transition-opacity duration-300 hover:opacity-0" 
+          />
+          <Image 
+            src="/assets/clockback.gif" 
+            alt="clockback" 
+            width={400} 
+            height={400} 
+            className="absolute top-[500px] left-[250px] cursor-pointer transition-opacity duration-300 opacity-0 hover:opacity-100" 
+          />
+          <div className="relative mt-0">
+          <Image 
+            src="/assets/sai.jpg" 
+            alt="sai" 
+            width={1920} 
+            height={1000} 
+            className="object-cover w-full h-full" 
+          />
+          {showBig1 && (
+          <Image 
+            src="/assets/big1.png" 
+            alt="big1" 
+            width={200} 
+            height={200} 
+            className="absolute top-[100px] left-[250px] cursor-pointer transition-opacity duration-300 animate-bounce" 
+            onClick={() => setShowBig1(false)}
+          />
+        )}
+        {showBig2 && (
+          <Image 
+            src="/assets/big2.png" 
+            alt="big2" 
+            width={200} 
+            height={200} 
+            className="absolute top-[450px] left-[300px] cursor-pointer transition-opacity duration-300 animate-bounce" 
+            onClick={() => setShowBig2(false)}
+          />
+        )}
+        {showBig3 && (
+          <Image 
+            src="/assets/big3.png" 
+            alt="big3" 
+            width={200} 
+            height={200} 
+            className="absolute top-[500px] right-[250px] cursor-pointer transition-opacity duration-300 animate-bounce " 
+            onClick={() => setShowBig3(false)}
+          />
+        )}
+        {showBig4 && (
+          <Image 
+            src="/assets/big4.png" 
+            alt="big4" 
+            width={200} 
+            height={200} 
+            className="absolute top-[150px] right-[350px] cursor-pointer transition-opacity duration-300 animate-bounce" 
+            onClick={() => setShowBig4(false)}
+          />
+        )}
+        {showBig5 && (
+          <Image 
+            src="/assets/big5.png" 
+            alt="big5" 
+            width={150} 
+            height={150} 
+            className="absolute top-[300px] right-[800px] cursor-pointer transition-opacity duration-300 animate-bounce" 
+            onClick={() => setShowBig5(false)}
+          />
+        )}
+         {allImagesClicked && (
+          <Image 
+            src="/assets/thankyou.png" 
+            alt="thankyou" 
+            width={1000} 
+            height={1000} 
+            className="absolute top-[180px] right-[400px] cursor-pointer transition-opacity duration-300" 
+          />
+        )}
+          </div>
+          </div>
+          <div className="w-full h-screen overflow-x-scroll relative">
+      <div
+        className="absolute top-0 left-0 h-full  flex transition-transform duration-300"
+        style={{ transform: `translateX(-${carPosition}px)` }}
+      >
+        <Image 
+          src="/assets/street.jpg" 
+          alt="street" 
+          width={1920} 
+          height={1000} 
+          className="object-cover w-[1920px] h-full" 
+        />
+        <Image 
+          src="/assets/street2.jpg" 
+          alt="street2" 
+          width={1920} 
+          height={1000} 
+          className="object-cover w-[1920px] h-full" 
+        />
+    </div>
+    <div className="absolute top-[200px] left-[30px] cursor-pointer" onClick={moveCar}>
+        <Image 
+          src="/assets/car.png" 
+          alt="car" 
+          width={700} 
+          height={700} 
+        />
+      </div>
+
+          </div> 
+          </div> 
+        </div> 
+      </div>
   );
-}
+} 
