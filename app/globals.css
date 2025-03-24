@@ -65,3 +65,136 @@ body {
   50% { transform: translateX(5px) rotate(5deg); }
   75% { transform: translateX(-3px) rotate(-3deg); }
 }
+
+.scrollable {
+  height: 100vh; /* หรือความสูงที่คุณต้องการ */
+  overflow-y: hidden; /* ปิดการเลื่อนเริ่มต้น */
+  transition: overflow-y 0.3s ease; /* เพิ่มการเปลี่ยนแปลงอย่างนุ่มนวล */
+}
+
+.scrollable.auto {
+  overflow-y: auto; /* เปิดการเลื่อนเมื่อเลื่อนถึงสุด */
+}
+
+@media screen and (max-width: 640px) {
+  .backgroundres {
+  background-color: red;
+  }
+}
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.animate-blink {
+  animation: blink 2s infinite;
+}
+@keyframes glowWhite {
+  0%, 100% {
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
+  }
+  50% {
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
+  }
+}
+
+@keyframes glowYellow {
+  0%, 100% {
+    filter: drop-shadow(0 0 20px rgba(255, 255, 150, 0.922));
+  }
+  50% {
+    filter: drop-shadow(0 0 5px rgba(255, 255, 150, 0.2));
+  }
+}
+
+.glow-white {
+  animation: glowWhite 1s infinite;
+}
+
+.glow-yellow {
+  animation: glowYellow 1s infinite;
+}
+@keyframes glowWhite {
+  0%, 100% {
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.859));
+  }
+  50% {
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
+  }
+}
+
+.glow-white {
+  animation: glowWhite 1s infinite;
+}
+
+.no-glow {
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8)); /* หยุดการกระพริบแต่ยังคงแสงเงา */
+}
+@keyframes glowLightYellow {
+  0%, 100% {
+    filter: drop-shadow(0 0 25px rgb(255, 255, 150)); /* แสงสีเหลืองอ่อนที่กระพริบ */
+  }
+  50% {
+    filter: drop-shadow(0 0 15px rgba(255, 255, 150, 0.4)); /* แสงเหลืองอ่อนจางๆ */
+  }
+}
+
+.glow-effect {
+  animation: glowLightYellow 1s infinite; /* ทำให้แอนิเมชันเล่นซ้ำ */
+}
+@keyframes glow {
+  0% {
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 1));
+  }
+  100% {
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+  }
+}
+
+.animate-glow {
+  animation: glow 1.5s infinite alternate;
+}
+@keyframes glow {
+  0% {
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 1));
+  }
+  100% {
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+  }
+}
+
+.animate-glow {
+  animation: glow 1.5s infinite alternate;
+}
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+.animate-blink {
+  animation: blink 0.5s infinite alternate;
+}
+@keyframes glow {
+  0% { filter: drop-shadow(0 0 5px white); }
+  50% { filter: drop-shadow(0 0 20px white); }
+  100% { filter: drop-shadow(0 0 5px white); }
+}
+.glow-effect {
+  animation: glow 1s infinite alternate;
+}
+@keyframes glow {
+  0% { filter: drop-shadow(0 0 5px white); }
+  50% { filter: drop-shadow(0 0 20px white); }
+  100% { filter: drop-shadow(0 0 5px white); }
+}
+.glow-effect {
+  animation: glow 1s infinite alternate;
+}
