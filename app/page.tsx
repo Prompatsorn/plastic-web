@@ -53,8 +53,34 @@ export default function Home() {
   const [activeImage, setActiveImage] = useState<string | null>("rdy");
 
   const [position, setPosition] = useState(700); // ค่าเริ่มต้นของ right
-  const [translateY, setTranslateY] = useState("translateY(0px)"); // ค่าเริ่มต้นของตำแหน่ง Y
   const [isImageChanged, setIsImageChanged] = useState(false); // เปลี่ยนชื่อจาก isActivated
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("opacity-100", "scale-100");
+          } else {
+            entry.target.classList.remove("opacity-100", "scale-100");
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    if (imgRef.current) {
+      observer.observe(imgRef.current);
+    }
+
+    return () => {
+      if (imgRef.current) {
+        observer.unobserve(imgRef.current);
+      }
+    };
+  }, []);
+
 
   const [isFlipped, setIsFlipped] = useState(false);
   const [backImagePosition, setBackImagePosition] = useState({
@@ -90,11 +116,11 @@ export default function Home() {
       if (event.deltaY > 0) {
         // เลื่อนลง -> รถขยับไปขวา 300px และยกตัวขึ้น 50px
         setPosition(400);
-        setTranslateY("translateY(-50px)");
+        
       } else {
         // เลื่อนขึ้น -> รถกลับตำแหน่งเดิมและอยู่ระดับเดิม
         setPosition(700);
-        setTranslateY("translateY(0px)");
+        
       }
     };
 
@@ -193,7 +219,7 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0.5 && !moved) {
+      if (window.scrollY > 0.1 && !moved) {
         setIsLocked(true); // 🔒 ล็อกการเลื่อน
         setXPos(300); // 🚗 ขยับไป 300px
         setMoved(true); // กันไม่ให้ขยับซ้ำ
@@ -201,7 +227,7 @@ export default function Home() {
         // 📜 หลังจาก 1 วินาที ให้เลื่อนหน้าเว็บลงไปที่ตำแหน่ง 2000px แล้วปลดล็อก
         setTimeout(() => {
           window.scrollTo({
-            top: 1200,
+            top: 1000,
             behavior: "smooth",
           });
 
@@ -236,18 +262,18 @@ export default function Home() {
     window.scrollTo({ top: 0, behavior: "smooth" }); // เลื่อนขึ้นไปบนสุด
   };
   const handleScrollDown = () => {
-    window.scrollTo({ top: 4200, behavior: "smooth" }); // เลื่อนไปที่ตำแหน่ง 5000px
+    window.scrollTo({ top: 2000, behavior: "smooth" }); // เลื่อนไปที่ตำแหน่ง 5000px
   };
   const handleScrollToBottom = () => {
-    window.scrollTo({ top: 10100, behavior: "smooth" }); // เลื่อนไปด้านล่างสุดของหน้า
+    window.scrollTo({ top: 4000, behavior: "smooth" }); // เลื่อนไปด้านล่างสุดของหน้า
   };
 
   const moveCar = () => {
     setCarPosition((prev) => {
       if (prev === 0) {
         // ถ้าอยู่ที่จุดเริ่มต้น ให้เลื่อนไป 1300px
-        return 1300;
-      } else if (prev === 1300) {
+        return 700;
+      } else if (prev === 700) {
         // ถ้าอยู่ที่ 1300px ให้กลับไปที่จุดเริ่มต้น
         return 0;
       }
@@ -401,7 +427,7 @@ export default function Home() {
         alt="car"
         width={150}
         height={150}
-        className="absolute top-[470px] right-[1050px] 2xl:top-[500px] md:top[0px] md:right-[0px]"
+        className="absolute top-[300px] right-[1050px]  md:top[300px] md:right-[950px] md:w-[90px]"
         style={{
           position: "absolute",
           transform: `translateX(${xPos}px)`,
@@ -411,7 +437,7 @@ export default function Home() {
 
       <button
         onClick={togglePlay}
-        className="fixed top-24 right-4 w-12 h-12 bg-transparent z-50 flex flex-col items-center gap-2"
+        className="fixed top-24 right-4 w-12 h-12 bg-transparent z-50 flex flex-col items-center gap-2  md:top-[60px] md:right-[380px] md:w-[30px]"
       >
         <Image
           src={isPlaying ? "/assets/sound1.png" : "/assets/sound-stop.png"}
@@ -423,14 +449,14 @@ export default function Home() {
 
       <div
         onClick={toggleMenu}
-        className="fixed top-4 right-4 w-12 h-12 bg-transparent z-50 flex flex-col items-center gap-2 cursor-pointer "
+        className="fixed top-4 right-4 w-12 h-12 bg-transparent z-50 flex flex-col items-center gap-2 cursor-pointer md:top-[20px] md:right-[380px] md:w-[30px]"
       >
         <Image src="/assets/menu.png" alt="menu" width={200} height={200} />
       </div>
 
       <div>
         {isMenuVisible && (
-          <div className="fixed top-4 right-20 bg-transparent z-50 flex flex-col items-center ">
+          <div className="fixed top-4 right-20 bg-transparent z-50 flex flex-col items-center  md:top-[20px] md:right-[420px] md:w-[80px]">
             <Image
               src="/assets/main.png"
               alt="main"
@@ -461,7 +487,7 @@ export default function Home() {
 
       <audio ref={audioRef} src="/assets/music.mp3" loop />
 
-      <div className="relative">
+      <div className="relative md:w-[932px]h-[100px]">
         <Image
           src="/assets/water2.jpg"
           alt="images"
@@ -474,7 +500,7 @@ export default function Home() {
           alt="topicwater"
           width={1000}
           height={1000}
-          className={`absolute top-9 left-72 transition-transform duration-500 ease-out 
+          className={`absolute top-9 left-56 transition-transform duration-500 ease-out  md:top-[60px] md:right-[700px] md:w-[500px]
           ${
             isTopicWaterVisible ? "scale-100 opacity-100" : "scale-50 opacity-0"
           }`}
@@ -482,35 +508,35 @@ export default function Home() {
         <Image
           src="/assets/bt.png"
           alt="images"
-          width={500}
-          height={500}
-          className="absolute top-[200px] left-[600px] transform  transition-opacity duration-300 hover:opacity-0 animate-[wiggle_1s_ease-in-out_infinite]"
+          width={200}
+          height={200}
+          className="absolute top-[100px] left-[350px] transform  transition-opacity duration-300 hover:opacity-0 animate-[wiggle_1s_ease-in-out_infinite] md:top-[170px] md:right-[350px] md:w-[250px]"
         />
         <Image
           src="/assets/textbt.png"
           alt="image"
-          width={1500}
-          height={1500}
-          className="absolute top-2/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-opacity duration-300 opacity-0 hover:opacity-100"
+          width={1000}
+          height={1000}
+          className="absolute top-2/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-opacity duration-100 opacity-0 hover:opacity-100 md:top-[300px] md:right-[360px] md:w-[800px]"
         />
       </div>
 
-      <div className="relative mt-0 flex flex-col items-center">
+      <div className="relative mt-0 flex flex-col items-center ">
         <Image
           src="/assets/what.jpg"
           alt="New Image"
           width={1920}
           height={1000}
-          className="w-full h-full"
+          className="w-full h-full  md:w-[932px]h-[100px]"
         />
         <Image
           src="/assets/question.png"
           alt="question"
           width={100}
           height={100}
-          className="absolute top-[200px] right-[500px] animate-[wiggle_0.5s_ease-in-out_infinite]"
+          className="absolute top-[200px] right-[500px] animate-[wiggle_0.5s_ease-in-out_infinite]  md:top-[130px] md:right-[300px] md:w-[60px]"
         />
-        <div className="absolute top-96 right-20 flex flex-col items-center gap-6">
+        <div className="absolute top-96 right-20 flex flex-col items-center gap-6 md:top-[250px] md:right-[50px] md:w-[320px]">
           <div className="relative">
             <Image
               src={c1Image}
@@ -543,7 +569,7 @@ export default function Home() {
           alt="wall3"
           width={1920}
           height={1000}
-          className="object-cover w-full h-full"
+          className="object-cover w-full h-full md:w-[932px]h-[100px]"
         />
         <Image
           id="textWallImage"
@@ -551,7 +577,7 @@ export default function Home() {
           alt="textwall3"
           width={1000}
           height={1000}
-          className={`absolute top-28 left-80 transition-transform duration-500 ease-out 
+          className={`absolute top-28 left-56 transition-transform duration-500 ease-out  md:top-[80px] md:right-[700px] md:w-[500px]
           ${
             isTextWallVisible ? "scale-100 opacity-100" : "scale-50 opacity-0"
           }`}
@@ -561,7 +587,7 @@ export default function Home() {
           alt="ylb1 image"
           width={200}
           height={200}
-          className="absolute left-[180px] top-64 object-cover image-hover-scale"
+          className="absolute left-[180px] top-64 object-cover image-hover-scale  md:top-[150px] md:left-[105px] md:w-[120px]"
           onClick={toggleYlb1Image}
         />
         <Image
@@ -569,7 +595,7 @@ export default function Home() {
           alt="blue"
           width={200}
           height={200}
-          className="absolute left-[520px] top-64 object-cover transform  rotate-10 image-hover-scale"
+          className="absolute left-[520px] top-64 object-cover transform  rotate-10 image-hover-scale  md:top-[150px] md:left-[300px] md:w-[120px] "
           onClick={toggleBlueImage}
         />
         <Image
@@ -577,7 +603,7 @@ export default function Home() {
           alt="green"
           width={200}
           height={200}
-          className="absolute right-[540px] top-64 object-cover transform rotate-10 image-hover-scale"
+          className="absolute right-[540px] top-64 object-cover transform rotate-10 image-hover-scale md:top-[150px] md:right-[310px] md:w-[120px]"
           onClick={toggleGreenImage}
         />
         <Image
@@ -585,7 +611,7 @@ export default function Home() {
           alt="red"
           width={200}
           height={200}
-          className="absolute right-[200px] top-64 object-cover transform rotate-10 image-hover-scale "
+          className="absolute right-[200px] top-64 object-cover transform rotate-10 image-hover-scale  md:top-[150px] md:right-[110px] md:w-[120px]"
           onClick={toggleRedImage}
         />
       </div>
@@ -596,7 +622,7 @@ export default function Home() {
           alt="gabage"
           width={1920}
           height={1000}
-          className="object-cover w-full h-full"
+          className="object-cover w-full h-full  md:w-[932px]h-[100px] "
         />
         <Image
           id="textGabageImage"
@@ -604,7 +630,7 @@ export default function Home() {
           alt="textgabage"
           width={700}
           height={700}
-          className={`absolute top-20 right-44 transition-transform duration-500 ease-out 
+          className={`absolute top-20 right-44 transition-transform duration-500 ease-out md:top-[40px] md:right-[120px] md:w-[400px] 
           ${
             isTextGabageVisible ? "scale-100 opacity-100" : "scale-50 opacity-0"
           }`}
@@ -614,7 +640,7 @@ export default function Home() {
           alt="bottle"
           width={800}
           height={800}
-          className="absolute top-56 left-52 image-hover-scale glow-white"
+          className="absolute top-56 left-52 image-hover-scale glow-white  md:top-[120px] md:left-[140px] md:w-[400px] "
           onClick={toggleBottleImage}
         />
 
@@ -623,7 +649,7 @@ export default function Home() {
           alt="bottlesearch"
           width={1000}
           height={1000}
-          className="absolute top-[750px] left-52 cursor-pointer image-hover-scale glow-yellow"
+          className="absolute top-[750px] left-52 cursor-pointer image-hover-scale glow-yellow md:top-[400px] md:left-[140px] md:w-[550px]"
           onClick={toggleBottleSearchImage}
         />
         <div className="relative mt-0">
@@ -632,28 +658,28 @@ export default function Home() {
             alt="tala"
             width={1920}
             height={1000}
-            className="object-cover w-full h-full"
+            className="object-cover w-full h-full md:w-[932px]h-[100px] "
           />
           <Image
             src="/assets/fongnum.png"
             alt="fongnum"
             width={800}
             height={800}
-            className="absolute top-[1380px] left-[800px] animate-blink"
+            className="absolute top-[1380px] left-[800px] animate-blink md:top-[400px] md:left-[20px] md:w-[550px] "
           />
           <Image
             src="/assets/fongnum.png"
             alt="fongnum"
             width={1000}
             height={1000}
-            className="absolute top-[1180px] left-1 animate-blink"
+            className="absolute top-[1180px] left-1 animate-blink md:top-[400px] md:left-[400px] md:w-[500px]"
           />
           <Image
             src={isGif ? "/assets/wefish.gif" : "/assets/wefish.png"}
             alt="wefish"
             width={350}
             height={350}
-            className="absolute top-[1750px] left-[310px] animate-[wiggle_1s_ease-in-out_infinite]"
+            className="absolute top-[1750px] left-[310px] animate-[wiggle_1s_ease-in-out_infinite] md:top-[1000px] md:left-[100px] md:w-[200px]"
             onClick={() => setIsGif(true)}
           />
 
@@ -663,7 +689,7 @@ export default function Home() {
             alt="texttale1"
             width={700}
             height={700}
-            className={`absolute top-[480px] right-80 cursor-pointer transition-transform duration-500 ease-out 
+            className={`absolute top-[480px] right-80 cursor-pointer transition-transform duration-500 ease-out md:top-[280px] md:right-[140px] md:w-[500px] 
           ${
             isTextTale1Visible ? "scale-100 opacity-100" : "scale-50 opacity-0"
           }`}
@@ -674,7 +700,7 @@ export default function Home() {
             alt="texttaoplastic"
             width={300}
             height={300}
-            className="absolute top-[1780px] left-[1060px]"
+            className="absolute top-[1780px] left-[1060px]  md:top-[1050px] md:left-[600px] md:w-[200px] "
           />
 
           {/* ภาพ taonoi */}
@@ -683,7 +709,7 @@ export default function Home() {
             alt="taonoi"
             width={300}
             height={300}
-            className="absolute top-[1800px] left-[800px] cursor-pointer transition-transform duration-500 animate-[wiggle_1s_ease-in-out_infinite] "
+            className="absolute top-[1800px] left-[800px] cursor-pointer transition-transform duration-500 animate-[wiggle_1s_ease-in-out_infinite]  md:top-[1050px] md:left-[500px] md:w-[200px] "
           />
 
           {/* ภาพ plastictao */}
@@ -693,7 +719,7 @@ export default function Home() {
               alt="plastictao"
               width={250}
               height={250}
-              className="absolute top-[1800px] left-[800px] transition-transform duration-[1500ms] ease-out animate-[wiggle_1s_ease-in-out_infinite]"
+              className="absolute top-[1800px] left-[800px] transition-transform duration-[1500ms] ease-out animate-[wiggle_1s_ease-in-out_infinite] md:top-[1050px] md:left-[460px] md:w-[200px]"
               onClick={onPlasticTaoClick} // เรียกฟังก์ชันเมื่อคลิก
             />
           )}
@@ -704,7 +730,7 @@ export default function Home() {
               alt="texttaledown"
               width={550}
               height={550}
-              className="absolute top-[1560px] left-[240px] "
+              className="absolute top-[1560px] left-[240px] md:top-[0px] md:left-[0px] md:w-[500px]  "
             />
           )}
           <Image
@@ -713,7 +739,7 @@ export default function Home() {
             alt="texttale2"
             width={700}
             height={700}
-            className={`absolute top-[1350px] left-44 cursor-pointer transition-transform duration-500 ease-out 
+            className={`absolute top-[1350px] left-44 cursor-pointer transition-transform duration-500 ease-out  md:top-[780px] md:left-[130px] md:w-[450px]
           ${
             isTextTale2Visible ? "scale-100 opacity-100" : "scale-50 opacity-0"
           }`}
@@ -724,42 +750,42 @@ export default function Home() {
             alt="g220"
             width={400}
             height={400}
-            className="absolute top-[480px] left-24 cursor-pointer"
+            className="absolute top-[480px] left-24 cursor-pointer md:top-[280px] md:left-[40px] md:w-[230px] "
           />
           <Image
             src="/assets/gback220.gif"
             alt="gback220"
             width={400}
             height={400}
-            className="absolute top-[480px] left-24 cursor-pointer transition-opacity duration-300 opacity-0 hover:opacity-100"
+            className="absolute top-[480px] left-24 cursor-pointer transition-opacity duration-300 opacity-0 hover:opacity-100 md:top-[280px] md:left-[40px] md:w-[230px] "
           />
           <Image
             src="/assets/openbottle.gif"
             alt="openbottle"
             width={400}
             height={400}
-            className="absolute top-[1300px] right-28 cursor-pointer transition-opacity duration-300 hover:opacity-0"
+            className="absolute top-[1300px] right-28 cursor-pointer transition-opacity duration-300 hover:opacity-0 md:top-[700px] md:right-[40px] md:w-[230px]"
           />
           <Image
             src="/assets/openbottleback.gif"
             alt="openbottleback"
             width={400}
             height={400}
-            className="absolute top-[1300px] right-28 cursor-pointer transition-opacity duration-300 opacity-0 hover:opacity-100"
+            className="absolute top-[1300px] right-28 cursor-pointer transition-opacity duration-300 opacity-0 hover:opacity-100 md:top-[700px] md:right-[40px] md:w-[230px] "
           />
           <Image
             src="/assets/tao.gif"
             alt="taogif"
             width={400}
             height={400}
-            className="absolute top-[900px] right-[1000px] cursor-pointer transition-opacity duration-300 hover:opacity-0"
+            className="absolute top-[900px] right-[1000px] cursor-pointer transition-opacity duration-300 hover:opacity-0 md:top-[520px] md:left-[40px] md:w-[230px]"
           />
           <Image
             src="/assets/taoback.gif"
             alt="taoback"
             width={400}
             height={400}
-            className="absolute top-[900px] right-[1000px] cursor-pointer transition-opacity duration-300 opacity-0 hover:opacity-100"
+            className="absolute top-[900px] right-[1000px] cursor-pointer transition-opacity duration-300 opacity-0 hover:opacity-100 md:top-[520px] md:left-[40px] md:w-[230px]"
           />
           {/* แสดง microbt.png เมื่อ isFlipped === false */}
           {!isFlipped && (
@@ -772,7 +798,7 @@ export default function Home() {
                 top: `${backImagePosition.top}px`,
                 right: `${backImagePosition.right}px`,
               }}
-              className="absolute cursor-pointer image-hover-scale glow-white"
+              className="absolute cursor-pointer image-hover-scale glow-white md:top-[-50px] md:right-[160px] md:w-[600px]"
               onClick={() => setIsFlipped(true)}
             />
           )}
@@ -788,7 +814,7 @@ export default function Home() {
                 top: `${backImagePosition.top}px`,
                 right: `${backImagePosition.right}px`,
               }}
-              className="absolute cursor-pointer no-glow"
+              className="absolute cursor-pointer no-glow md:top-[0px] md:right-[160px] md:w-[600px] "
               onClick={() => setIsFlipped(false)}
             />
           )}
@@ -798,7 +824,7 @@ export default function Home() {
               alt="beach"
               width={1920}
               height={1000}
-              className="object-cover w-full h-full"
+              className="object-cover w-full h-full  md:w-[932px]h-[100px]  "
             />
 
             <Image
@@ -817,7 +843,7 @@ export default function Home() {
               alt="wan"
               width={500}
               height={500}
-              className="absolute top-[150px] left-[700px]  "
+              className="absolute top-[150px] left-[700px]  md:top-[40px] md:left-[400px] md:w-[320px] "
             />
             <div>
               {/* Seal */}
@@ -826,7 +852,7 @@ export default function Home() {
                 alt="seal"
                 width={500}
                 height={500}
-                className="absolute top-[1200px] left-[200px] cursor-pointer transition-opacity duration-300 animate-[wiggle_1s_ease-in-out_infinite]"
+                className="absolute top-[1200px] left-[200px] cursor-pointer transition-opacity duration-300 animate-[wiggle_1s_ease-in-out_infinite] md:top-[700px] md:left-[100px] md:w-[300px] "
                 onClick={handleSealClick}
               />
 
@@ -847,7 +873,7 @@ export default function Home() {
                   alt={name}
                   width={150}
                   height={150}
-                  className={`absolute top-[1000px] ${
+                  className={`absolute top-[1000px] md:top-[560px] md:left-[100px] md:w-[100px] ${
                     index >= 6
                       ? `right-[${index === 6 ? 20 : 200}px]`
                       : `left-[${200 + index * 200}px]`
@@ -863,14 +889,14 @@ export default function Home() {
               alt="clock"
               width={400}
               height={400}
-              className="absolute top-[500px] left-[250px] cursor-pointer transition-opacity duration-300 hover:opacity-0"
+              className="absolute top-[500px] left-[250px] cursor-pointer transition-opacity duration-300 hover:opacity-0  md:top-[200px] md:left-[100px] md:w-[300px]"
             />
             <Image
               src="/assets/clockback.gif"
               alt="clockback"
               width={400}
               height={400}
-              className="absolute top-[500px] left-[250px] cursor-pointer transition-opacity duration-300 opacity-0 hover:opacity-100"
+              className="absolute top-[500px] left-[250px] cursor-pointer transition-opacity duration-300 opacity-0 hover:opacity-100 md:top-[200px] md:left-[100px] md:w-[300px]"
             />
             <div className="relative mt-0">
               <Image
@@ -878,7 +904,7 @@ export default function Home() {
                 alt="sai"
                 width={1920}
                 height={1000}
-                className="object-cover w-full h-full"
+                className="object-cover w-full h-full  md:w-[932px]h-[100px] "
               />
               {/* อื่น ๆ */}
               <Image
@@ -887,7 +913,7 @@ export default function Home() {
                 alt="savegabage"
                 width={300}
                 height={300}
-                className={`absolute top-[60px] right-[200px] cursor-pointer transition-transform duration-500 ease-out ${
+                className={`absolute top-[60px] right-[200px] cursor-pointer transition-transform duration-500 ease-out  md:top-[40px] md:left-[650px] md:w-[150px] ${
                   isSavegabageVisible
                     ? "scale-100 opacity-100"
                     : "scale-50 opacity-0"
@@ -900,7 +926,7 @@ export default function Home() {
                   alt="big1"
                   width={200}
                   height={200}
-                  className="absolute top-[100px] left-[250px] cursor-pointer transition-opacity duration-300 animate-bounce"
+                  className="absolute top-[100px] left-[250px] cursor-pointer transition-opacity duration-300 animate-bounce md:top-[130px] md:left-[650px] md:w-[140px]"
                   onClick={() => setShowBig1(false)}
                 />
               )}
@@ -910,7 +936,7 @@ export default function Home() {
                   alt="big2"
                   width={200}
                   height={200}
-                  className="absolute top-[450px] left-[300px] cursor-pointer transition-opacity duration-300 animate-bounce"
+                  className="absolute top-[450px] left-[300px] cursor-pointer transition-opacity duration-300 animate-bounce  md:top-[300px] md:left-[630px] md:w-[140px]"
                   onClick={() => setShowBig2(false)}
                 />
               )}
@@ -920,7 +946,7 @@ export default function Home() {
                   alt="big3"
                   width={200}
                   height={200}
-                  className="absolute top-[500px] right-[250px] cursor-pointer transition-opacity duration-300 animate-bounce "
+                  className="absolute top-[500px] right-[250px] cursor-pointer transition-opacity duration-300 animate-bounce  md:top-[300px] md:right-[630px] md:w-[140px]"
                   onClick={() => setShowBig3(false)}
                 />
               )}
@@ -930,7 +956,7 @@ export default function Home() {
                   alt="big4"
                   width={200}
                   height={200}
-                  className="absolute top-[150px] right-[350px] cursor-pointer transition-opacity duration-300 animate-bounce"
+                  className="absolute top-[150px] right-[350px] cursor-pointer transition-opacity duration-300 animate-bounce md:top-[130px] md:right-[430px] md:w-[140px]" 
                   onClick={() => setShowBig4(false)}
                 />
               )}
@@ -940,7 +966,7 @@ export default function Home() {
                   alt="big5"
                   width={150}
                   height={150}
-                  className="absolute top-[300px] right-[800px] cursor-pointer transition-opacity duration-300 animate-bounce"
+                  className="absolute top-[300px] right-[800px] cursor-pointer transition-opacity duration-300 animate-bounce md:top-[130px] md:right-[700px] md:w-[140px]"
                   onClick={() => setShowBig5(false)}
                 />
               )}
@@ -950,7 +976,7 @@ export default function Home() {
                   alt="thankyou"
                   width={1000}
                   height={1000}
-                  className="absolute top-[180px] right-[400px] cursor-pointer transition-opacity duration-300"
+                  className="absolute top-[180px] right-[400px] cursor-pointer transition-opacity duration-300 md:top-[130px] md:right-[200px] md:w-[600px]"
                 />
               )}
             </div>
@@ -965,14 +991,14 @@ export default function Home() {
                 alt="street"
                 width={1920}
                 height={1000}
-                className="object-cover w-[1920px] h-full"
+                className="object-cover w-[1920px] h-full md:w-[932px]h-[100px]"
               />
               <Image
                 src="/assets/street2.jpg"
                 alt="street2"
                 width={1920}
                 height={1000}
-                className="object-cover w-[1920px] h-full"
+                className="object-cover w-[1920px] h-full md:w-[932px]h-[100px]"
               />
               <Image
                 src={
@@ -983,7 +1009,7 @@ export default function Home() {
                 alt="yekkaya"
                 width={800}
                 height={800}
-                className="absolute top-[400px] left-[2050px] cursor-pointer image-hover-scale"
+                className="absolute top-[400px] left-[2050px] cursor-pointer image-hover-scale  md:top-[230px] md:left-[1200px] md:w-[600px]"
                 onClick={() => setIsYekkayaFront(!isYekkayaFront)}
               />
               <Image
@@ -991,21 +1017,21 @@ export default function Home() {
                 alt="recycle1"
                 width={1920}
                 height={1000}
-                className="object-cover w-[1920px] h-full"
+                className="object-cover w-[1920px] h-full md:w-[932px]h-[100px]"
               />
               <Image
                 src="/assets/recycle12.jpg"
                 alt="recycle12"
                 width={1920}
                 height={1000}
-                className="object-cover w-[1920px] h-full"
+                className="object-cover w-[1920px] h-full md:w-[932px]h-[100px]"
               />
               <Image
                 src="/assets/lang.png"
                 alt="lang"
                 width={800}
                 height={800}
-                className="absolute top-[575px] left-[3700px]"
+                className="absolute top-[575px] left-[3700px] md:top-[340px] md:left-[2200px] md:w-[500px]"
               />
               <Image
                 src="/assets/btsleep.png"
@@ -1013,7 +1039,7 @@ export default function Home() {
                 width={300}
                 height={300}
                 className={`absolute top-[590px] left-[3750px] cursor-pointer transition-transform duration-1000 z-10 
-          animate-glow ${shifted ? "translate-x-[300px]" : "translate-x-0"}`}
+          animate-glow  md:top-[345px] md:left-[2230px] md:w-[200px] ${shifted ? "translate-x-[245px]" : "translate-x-0"}`}
                 onClick={handleFlaskClick}
               />
               {isTypingVisible ? ( // ตรวจสอบสถานะเพื่อแสดงภาพ
@@ -1022,7 +1048,7 @@ export default function Home() {
                   alt="typing"
                   width={700}
                   height={700}
-                  className="absolute top-[300px] left-[3750px]"
+                  className="absolute top-[300px] left-[3750px]  md:top-[150px] md:left-[2300px] md:w-[500px]"
                 />
               ) : (
                 <Image
@@ -1030,7 +1056,7 @@ export default function Home() {
                   alt="text1"
                   width={700}
                   height={700}
-                  className="absolute top-[240px] left-[3750px]"
+                  className="absolute top-[240px] left-[3750px] md:top-[150px] md:left-[2300px] md:w-[500px]"
                 />
               )}
               <Image
@@ -1038,7 +1064,7 @@ export default function Home() {
                 alt="pbtone"
                 width={400}
                 height={400}
-                className="absolute top-[120px] left-[4480px] cursor-pointer glow-effect"
+                className="absolute top-[120px] left-[4480px] cursor-pointer glow-effect md:top-[80px] md:left-[2690px] md:w-[230px]"
                 onClick={() => setIsImageChanged(!isImageChanged)}
                 title="คลิกเพื่อเปลี่ยนภาพ"
               />
@@ -1049,7 +1075,7 @@ export default function Home() {
                 alt="btgo"
                 width={100}
                 height={100}
-                className={`absolute left-[4635px] transition-all duration-[2000ms] ease-linear ${
+                className={`absolute left-[4635px] transition-all duration-[2000ms] ease-linear md:top-[200px] md:left-[2780px] md:w-[50px] ${
                   isImageChanged
                     ? "top-[200px] opacity-0"
                     : "top-[400px] opacity-100"
@@ -1060,9 +1086,9 @@ export default function Home() {
                   isImageChanged ? "/assets/text2.png" : "/assets/typing.gif"
                 }
                 alt="typing"
-                width={600} // กำหนดความกว้างตรงนี้
-                height={150} // กำหนดความสูงตรงนี้
-                className={`absolute transition-all duration-1000 ${
+                width={700} // กำหนดความกว้างตรงนี้
+                height={700} // กำหนดความสูงตรงนี้
+                className={`absolute transition-all duration-1000 md:top-[50px] md:left-[2960px] md:w-[400px] md:h-[80px] ${
                   isImageChanged
                     ? "top-[80px] left-[5000px]"
                     : "h-[100px] top-[100px] left-[5000px]"
@@ -1073,7 +1099,7 @@ export default function Home() {
                 alt="new"
                 width={1000}
                 height={1000}
-                className="absolute top-[280px] left-[4850px] cursor-pointer glow-effect"
+                className="absolute top-[280px] left-[4850px] cursor-pointer glow-effect  md:top-[180px] md:left-[2920px] md:w-[550px] "
                 onClick={handleNewClick}
               />
 
@@ -1082,8 +1108,8 @@ export default function Home() {
                 alt="btpt"
                 width={40}
                 height={40}
-                className={`absolute top-[400px] left-[5250px] transition-transform duration-1000 ${
-                  isMoved ? "translate-x-[500px]" : "translate-x-0"
+                className={`absolute top-[400px] left-[5250px] transition-transform duration-1000  md:top-[245px] md:left-[3150px] md:w-[25px] ${
+                  isMoved ? "translate-x-[250px]" : "translate-x-0"
                 }`} // เลื่อนเมื่อ isMoved เป็น true
               />
               <Image
@@ -1091,56 +1117,56 @@ export default function Home() {
                 alt="wallnew"
                 width={1920}
                 height={1000}
-                className="object-cover w-[1920px] h-full"
+                className="object-cover w-[1920px] h-full md:w-[932px]h-[100px]"
               />
               <Image
                 src="/assets/textwallnew.png"
                 alt="textwallnew"
                 width={600}
                 height={600}
-                className="absolute top-[60px] left-[6380px]"
+                className="absolute top-[60px] left-[6380px]  md:top-[30px] md:left-[3750px] md:w-[400px] "
               />
               <Image
                 src="/assets/kapao.png"
                 alt="kapao"
                 width={300}
                 height={300}
-                className="absolute top-[280px] left-[6205px] transition-opacity duration-500 ease-in-out opacity-100 hover:opacity-100"
+                className="absolute top-[280px] left-[6205px] transition-opacity duration-500 ease-in-out opacity-100 hover:opacity-100 md:top-[170px] md:left-[3680px] md:w-[180px] "
               />
               <Image
                 src="/assets/kapaoback.png"
                 alt="kapaoback"
                 width={300}
                 height={300}
-                className="absolute top-[190px] left-[6160px] transition-transform duration-500 ease-in-out scale-100 opacity-0 hover:scale-110 hover:opacity-100"
+                className="absolute top-[190px] left-[6160px] transition-transform duration-500 ease-in-out scale-100 opacity-0 hover:scale-110 hover:opacity-100 md:top-[100px] md:left-[3650px] md:w-[180px] "
               />
               <Image
                 src="/assets/btblue.png"
                 alt="btblue"
                 width={300}
                 height={300}
-                className="absolute top-[300px] left-[6540px] transition-opacity duration-500 ease-in-out opacity-100 hover:opacity-100 "
+                className="absolute top-[300px] left-[6540px] transition-opacity duration-500 ease-in-out opacity-100 hover:opacity-100 md:top-[180px] md:left-[3880px] md:w-[180px] "
               />
               <Image
                 src="/assets/btblueback.png"
                 alt="btblueback"
                 width={340}
                 height={340}
-                className="absolute top-[190px] left-[6520px] transition-transform duration-500 ease-in-out scale-100 opacity-0 hover:scale-110 hover:opacity-100"
+                className="absolute top-[190px] left-[6520px] transition-transform duration-500 ease-in-out scale-100 opacity-0 hover:scale-110 hover:opacity-100 md:top-[120px] md:left-[3880px] md:w-[180px] "
               />
               <Image
                 src="/assets/sh.png"
                 alt="sh"
                 width={300}
                 height={300}
-                className="absolute top-[280px] left-[6870px] transition-opacity duration-500 ease-in-out opacity-100 hover:opacity-100 "
+                className="absolute top-[280px] left-[6870px] transition-opacity duration-500 ease-in-out opacity-100 hover:opacity-100  md:top-[170px] md:left-[4075px] md:w-[180px] "
               />
               <Image
                 src="/assets/shback.png"
                 alt="shback"
                 width={300}
                 height={300}
-                className="absolute top-[190px] left-[6915px] transition-transform duration-500 ease-in-out scale-100 opacity-0 hover:scale-110 hover:opacity-100"
+                className="absolute top-[190px] left-[6915px] transition-transform duration-500 ease-in-out scale-100 opacity-0 hover:scale-110 hover:opacity-100 md:top-[110px] md:left-[4100px] md:w-[180px]"
               />
             </div>
 
@@ -1153,20 +1179,20 @@ export default function Home() {
                 alt="carpao"
                 width={700}
                 height={700}
-                className="relative z-10" // carpao อยู่ด้านหน้า
+                className="relative z-10 md:top-[-80px] md:right-[-10px] md:w-[400px]" // carpao อยู่ด้านหน้า
               />
               <Image
                 src="/assets/kaya.png"
                 alt="kaya"
                 width={300}
                 height={300}
-                className="absolute top-[-130px] left-[60px] z-0 animate-[wiggle_0.8s_ease-in-out_infinite]" // kaya อยู่ด้านหลัง
+                className="absolute top-[-130px] left-[60px] z-0 animate-[wiggle_0.8s_ease-in-out_infinite] md:top-[-150px] md:right-[-10px] md:w-[200px]" // kaya อยู่ด้านหลัง
                 onClick={moveCar}
               />
             </div>
           </div>
         </div>
-        <div className="relative min-h-screen w-full">
+        <div className="relative min-h-screen w-full md:w-[932px]h-[100px]">
           {/* รูปพื้นหลัง */}
           <Image
             src="/assets/bg4.jpg"
@@ -1184,7 +1210,7 @@ export default function Home() {
               alt="textworld"
               width={800}
               height={800}
-              className="absolute top-20 left-1/2 -translate-x-1/2 -translate-y-1/2"
+              className="absolute top-20 left-1/2 -translate-x-1/2 -translate-y-1/2  md:top-[30px] md:right-[10px] md:w-[500px] "
             />
             {/* textworld2.png แสดงหลัง 1 วินาที */}
             <Image
@@ -1192,7 +1218,7 @@ export default function Home() {
               alt="textworld2"
               width={400}
               height={400}
-              className={`absolute top-44 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-opacity duration-500 ${
+              className={`absolute top-44 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-opacity duration-500  md:top-[90px] md:right-[10px] md:w-[200px] ${
                 showText ? "opacity-100" : "opacity-0"
               }`}
             />
@@ -1203,7 +1229,7 @@ export default function Home() {
               alt="hand"
               width={550}
               height={550}
-              className="absolute top-3/4 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse cursor-pointer"
+              className="absolute top-3/4 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse cursor-pointer md:top-[310px] md:right-[10px] md:w-[350px]"
               onClick={handleClick}
             />
 
@@ -1213,7 +1239,7 @@ export default function Home() {
               alt="world"
               width={500}
               height={500}
-              className={`absolute top-[430px] left-[780px] -translate-x-1/2 -translate-y-1/2 transition-opacity duration-500 ${
+              className={`absolute top-[430px] left-[780px] -translate-x-1/2 -translate-y-1/2 transition-opacity duration-500  md:top-[230px] md:left-[460px] md:w-[280px] ${
                 showWorld ? "opacity-100" : "opacity-0"
               }`}
             />
@@ -1234,7 +1260,7 @@ export default function Home() {
             alt="rdy"
             width={200}
             height={200}
-            className="absolute top-[7580] left-[300] cursor-pointer"
+            className="absolute top-[7580] left-[300] cursor-pointer md:top-[4410px] md:left-[170px] md:w-[140px]"
             onClick={() => handleToggle("rdy")}
           />
           {activeImage === "rdy" && (
@@ -1244,21 +1270,21 @@ export default function Home() {
                 alt="rd1"
                 width={750}
                 height={750}
-                className="absolute transition-opacity duration-500 top-[7800] left-[475]"
+                className="absolute transition-opacity duration-500 top-[7800] left-[475] md:top-[4510px] md:left-[245px] md:w-[500px]"
               />
               <Image
                 src="/assets/rdtext.png"
                 alt="rdtext"
                 width={460}
                 height={460}
-                className="absolute transition-opacity duration-500 top-[7794] left-[580]  shadow-[4px_-4px_8px_rgba(0,0,0,0.1)]"
+                className="absolute transition-opacity duration-500 top-[7794] left-[580]  shadow-[4px_-4px_8px_rgba(0,0,0,0.1)] md:top-[4510px] md:left-[320px] md:w-[300px]"
               />
               <Image
                 src="/assets/rdtext1.png"
                 alt="rdtext1"
                 width={450}
                 height={450}
-                className="absolute transition-opacity duration-500 top-[7800] left-[580]"
+                className="absolute transition-opacity duration-500 top-[7800] left-[580] md:top-[4530px] md:left-[345px] md:w-[250px] "
               />
             </>
           )}
@@ -1269,7 +1295,7 @@ export default function Home() {
             alt="ruy"
             width={200}
             height={200}
-            className="absolute top-[7580] left-[700] cursor-pointer"
+            className="absolute top-[7580] left-[700] cursor-pointer md:top-[4410px] md:left-[400px] md:w-[140px] "
             onClick={() => handleToggle("ruy")}
           />
           {activeImage === "ruy" && (
@@ -1279,21 +1305,21 @@ export default function Home() {
                 alt="ru1"
                 width={750}
                 height={750}
-                className="absolute transition-opacity duration-500 top-[7725] left-[450]"
+                className="absolute transition-opacity duration-500 top-[7725] left-[450] md:top-[4460px] md:left-[233px] md:w-[500px]"
               />
               <Image
                 src="/assets/rutext.png"
                 alt="rut"
                 width={460}
                 height={460}
-                className="absolute transition-opacity duration-500 top-[7794] left-[580]  shadow-[4px_-4px_8px_rgba(0,0,0,0.1)]"
+                className="absolute transition-opacity duration-500 top-[7794] left-[580]  shadow-[4px_-4px_8px_rgba(0,0,0,0.1)] md:top-[4510px] md:left-[320px] md:w-[300px]"
               />
               <Image
                 src="/assets/rutext1.png"
                 alt="rut1"
                 width={460}
                 height={460}
-                className="absolute transition-opacity duration-500 top-[7795] left-[580]"
+                className="absolute transition-opacity duration-500 top-[7795] left-[580] md:top-[4530px] md:left-[345px] md:w-[250px] "
               />
             </>
           )}
@@ -1304,7 +1330,7 @@ export default function Home() {
             alt="rcy"
             width={200}
             height={200}
-            className="absolute top-[7580] left-[1100] cursor-pointer"
+            className="absolute top-[7580] left-[1100] cursor-pointer md:top-[4410px] md:left-[625px] md:w-[140px] "
             onClick={() => handleToggle("rcy")}
           />
           {activeImage === "rcy" && (
@@ -1314,21 +1340,21 @@ export default function Home() {
                 alt="rc1"
                 width={910}
                 height={910}
-                className="absolute transition-opacity duration-500 top-[7720] left-[366]"
+                className="absolute transition-opacity duration-500 top-[7720] left-[366] md:top-[4474px] md:left-[210px] md:w-[550px] "
               />
               <Image
                 src="/assets/rctext.png"
                 alt="rct"
                 width={465}
                 height={465}
-                className="absolute transition-opacity duration-500 top-[7795] left-[565]  shadow-[4px_-4px_8px_rgba(0,0,0,0.1)]"
+                className="absolute transition-opacity duration-500 top-[7795] left-[565]  shadow-[4px_-4px_8px_rgba(0,0,0,0.1)] md:top-[4510px] md:left-[320px] md:w-[300px] "
               />
               <Image
                 src="/assets/rctext1.png"
                 alt="rct1"
                 width={440}
                 height={440}
-                className="absolute transition-opacity duration-500 top-[7795] left-[580]"
+                className="absolute transition-opacity duration-500 top-[7795] left-[580] md:top-[4530px] md:left-[345px] md:w-[250px] "
               />
             </>
           )}
@@ -1342,13 +1368,13 @@ export default function Home() {
             className="object-cover w-full h-full"
           />
 
-          <div ref={ref} className="absolute top-[115px] right-[350px]">
+          <div ref={ref} className="absolute top-[115px] right-[350px] md:top-[20px] md:right-[270px] md:w-[200px]">
             <Image
               src="/assets/textwall6.png"
               alt="textwall6"
               width={500}
               height={500}
-              className={`transition-all duration-700 ease-out ${
+              className={`transition-all duration-700 ease-out   ${
                 isImageVisible
                   ? "translate-y-0 scale-100 opacity-100"
                   : "translate-y-20 scale-90 opacity-0"
@@ -1362,9 +1388,8 @@ export default function Home() {
             height={150}
             style={{
               right: `${position}px`,
-              transform: translateY, // ใช้ translateY เพื่อให้รถยกขึ้น
             }}
-            className="absolute top-[650px] transition-all duration-500"
+            className="absolute top-[650px] transition-all duration-500 md:top-[310px] md:left-[420px] md:w-[100px] "
           />
         </div>
 
@@ -1374,11 +1399,37 @@ export default function Home() {
             alt="pojadtum"
             width={150}
             height={150}
-            className="absolute top-[750px] right-[750px]"
+            className="absolute top-[750px] right-[750px] md:top-[500px] md:right-[410px] md:w-[100px] "
           />
+             <Image
+      ref={imgRef}
+      src="/assets/lasttopic.png"
+      alt="lasttopic"
+      width={400}
+      height={400}
+      className="absolute top-[200px] right-[250px] opacity-0 scale-100 transition-all duration-[1500ms] ease-in-out"
+    />
           <Image
             src="/assets/last1.png"
             alt="last"
+            width={1920}
+            height={1000}
+            className="object-cover w-full h-full"
+          />
+          
+        </div>
+        <div className="relative mt-0">
+          <Image
+            src="/assets/lastlast.jpg"
+            alt="lastlast"
+            width={1920}
+            height={1000}
+            className="object-cover w-full h-full"
+          />
+           
+          <Image
+            src="/assets/fotter.jpg"
+            alt="lastlast"
             width={1920}
             height={1000}
             className="object-cover w-full h-full"
@@ -1388,17 +1439,8 @@ export default function Home() {
             alt="retern"
             width={70}
             height={70}
-            className="absolute top-[100px] right-[800px] animate-spin cursor-pointer"
+            className="absolute top-[480px] right-[420px]  cursor-pointer md:top-[450px] md:right-[410px] md:w-[100px]"
             onClick={scrollToTop}
-          />
-        </div>
-        <div className="relative mt-0">
-          <Image
-            src="/assets/lastlast.jpg"
-            alt="lastlast"
-            width={1920}
-            height={1000}
-            className="object-cover w-full h-full"
           />
         </div>
       </div>
