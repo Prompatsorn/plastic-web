@@ -430,7 +430,7 @@ export default function Home() {
 
       <button
         onClick={togglePlay}
-        className="fixed lg:top-24 lg:right-4 lg:w-12 lg:h-12 bg-transparent z-50 flex flex-col items-center gap-2  md:top-[60px] md:right-[380px] md:w-[30px]"
+        className="fixed lg:top-24 lg:right-4 lg:w-12 lg:h-12 bg-transparent z-50 flex flex-col items-center gap-2  md:top-[60px] md:right-[20px] md:w-[30px]"
       >
         <Image
           src={isPlaying ? "/assets/sound1.png" : "/assets/sound-stop.png"}
@@ -442,14 +442,14 @@ export default function Home() {
 
       <div
         onClick={toggleMenu}
-        className="fixed lg:top-4 lg:right-4 lg:w-12 lg:h-12 bg-transparent z-50 flex flex-col items-center gap-2 cursor-pointer md:top-[20px] md:right-[380px] md:w-[30px]"
+        className="fixed lg:top-4 lg:right-4 lg:w-12 lg:h-12 bg-transparent z-50 flex flex-col items-center gap-2 cursor-pointer md:top-[20px] md:right-[20px] md:w-[30px]"
       >
         <Image src="/assets/menu.png" alt="menu" width={200} height={200} />
       </div>
 
       <div>
         {isMenuVisible && (
-          <div className="fixed top-4 right-20 bg-transparent z-50 flex flex-col items-center  md:top-[20px] md:right-[420px] md:w-[80px]">
+          <div className="fixed lg:top-4 lg:right-20 lg:w-[200px] bg-transparent z-50 flex flex-col items-center  md:top-[20px] md:right-[60px] md:w-[80px]">
             <Image
               src="/assets/main.png"
               alt="main"
@@ -673,7 +673,7 @@ export default function Home() {
             alt="wefish"
             width={350}
             height={350}
-            className="absolute lg:top-[1750px] lg:left-[310px] lg:w-[350px] animate-[wiggle_1s_ease-in-out_infinite] md:top-[1000px] md:left-[100px] md:w-[200px]"
+            className="absolute lg:top-[1950px] lg:left-[310px] lg:w-[350px] animate-[wiggle_1s_ease-in-out_infinite] md:top-[1100px] md:left-[100px] md:w-[200px]"
             onClick={() => setIsGif(true)}
           />
 
@@ -703,7 +703,7 @@ export default function Home() {
             alt="taonoi"
             width={300}
             height={300}
-            className="absolute lg:top-[1800px] lg:left-[1050px]  lg:w-[300px] cursor-pointer transition-transform duration-500 animate-[wiggle_1s_ease-in-out_infinite]  md:top-[1050px] md:left-[500px] md:w-[200px] "
+            className="absolute lg:top-[1800px] lg:left-[1050px]  lg:w-[300px] cursor-pointer transition-transform duration-500 animate-[wiggle_1s_ease-in-out_infinite]  md:top-[1050px] md:left-[600px] md:w-[200px] "
           />
 
           {/* ภาพ plastictao */}
@@ -713,7 +713,7 @@ export default function Home() {
               alt="plastictao"
               width={250}
               height={250}
-              className="absolute lg:top-[1800px] lg:left-[1050px] lg:w-[250px] transition-transform duration-[1500ms] ease-out animate-[wiggle_1s_ease-in-out_infinite] md:top-[1050px] md:left-[460px] md:w-[200px]"
+              className="absolute lg:top-[1800px] lg:left-[1050px] lg:w-[250px] transition-transform duration-[1500ms] ease-out animate-[wiggle_1s_ease-in-out_infinite] md:top-[1050px] md:left-[550px] md:w-[200px]"
               onClick={onPlasticTaoClick} // เรียกฟังก์ชันเมื่อคลิก
             />
           )}
@@ -724,7 +724,7 @@ export default function Home() {
               alt="texttaledown"
               width={550}
               height={550}
-              className="absolute lg:top-[1560px] lg:left-[240px] lg:w-[500px] md:top-[0px] md:left-[0px] md:w-[500px]  "
+              className="absolute lg:top-[1560px] lg:left-[240px] lg:w-[500px] md:top-[900px] md:left-[150px] md:w-[400px]  "
             />
           )}
           <Image
@@ -792,7 +792,7 @@ export default function Home() {
               //   top: `${backImagePosition.top}px`,
               //   right: `${backImagePosition.right}px`,
               // }}
-              className="absolute cursor-pointer image-hover-scale glow-white md:top-[1050px] md:right-[160px] md:w-[600px] lg:top-[1700px] lg:right-[900px] lg:w-[800px] "
+              className="absolute cursor-pointer image-hover-scale glow-white md:top-[1050px] md:left-[100px] md:w-[500px] lg:top-[1700px] lg:right-[900px] lg:w-[800px] "
               onClick={() => setIsFlipped(true)}
             />
           )}
@@ -808,7 +808,7 @@ export default function Home() {
               //   top: `${backImagePosition.top}px`,
               //   right: `${backImagePosition.right}px`,
               // }}
-              className="absolute cursor-pointer no-glow md:top-[1050px] md:right-[160px] md:w-[600px] lg:top-[100px] lg:w-[800px] "
+              className="absolute cursor-pointer no-glow md:top-[1050px] md:left-[100px] md:w-[500px] lg:top-[1700px] lg:right-[900px] lg:w-[800px] "
               onClick={() => setIsFlipped(false)}
             />
           )}
@@ -827,7 +827,7 @@ export default function Home() {
               alt="textbeach"
               width={700}
               height={700}
-              className={`absolute top-[1300px] left-[780px] transition-transform duration-500 ease-out 
+              className={`absolute lg:top-[1300px] lg:left-[780px] md:top-[1500px] transition-transform duration-500 ease-out 
           ${
             isTextBeachVisible ? "scale-100 opacity-100" : "scale-50 opacity-0"
           }`}
@@ -837,7 +837,7 @@ export default function Home() {
               alt="wan"
               width={500}
               height={500}
-              className="absolute top-[150px] left-[700px]  md:top-[40px] md:left-[400px] md:w-[320px] "
+              className="absolute lg:top-[150px] lg:left-[700px] lg:w-[500px]  md:top-[40px] md:left-[400px] md:w-[320px] "
             />
             <div>
               {/* Seal */}
@@ -846,7 +846,7 @@ export default function Home() {
                 alt="seal"
                 width={500}
                 height={500}
-                className="absolute top-[1200px] left-[200px] cursor-pointer transition-opacity duration-300 animate-[wiggle_1s_ease-in-out_infinite] md:top-[700px] md:left-[100px] md:w-[300px] "
+                className="absolute lg:top-[1200px] lg:left-[200px] lg:w-[500px] cursor-pointer transition-opacity duration-300 animate-[wiggle_1s_ease-in-out_infinite] md:top-[700px] md:left-[100px] md:w-[300px] "
                 onClick={handleSealClick}
               />
 
@@ -867,7 +867,7 @@ export default function Home() {
                   alt={name}
                   width={150}
                   height={150}
-                  className={`absolute top-[1000px] md:top-[560px] md:left-[100px] md:w-[100px] ${
+                  className={`absolute lg:top-[1000px] md:top-[560px] md:left-[100px] md:w-[100px] ${
                     index >= 6
                       ? `right-[${index === 6 ? 20 : 200}px]`
                       : `left-[${200 + index * 200}px]`
@@ -883,14 +883,14 @@ export default function Home() {
               alt="clock"
               width={400}
               height={400}
-              className="absolute top-[500px] left-[250px] cursor-pointer transition-opacity duration-300 hover:opacity-0  md:top-[200px] md:left-[100px] md:w-[300px]"
+              className="absolute lg:top-[500px] lg:left-[250px] lg:w-[400px] cursor-pointer transition-opacity duration-300 hover:opacity-0  md:top-[200px] md:left-[100px] md:w-[300px]"
             />
             <Image
               src="/assets/clockback.gif"
               alt="clockback"
               width={400}
               height={400}
-              className="absolute top-[500px] left-[250px] cursor-pointer transition-opacity duration-300 opacity-0 hover:opacity-100 md:top-[200px] md:left-[100px] md:w-[300px]"
+              className="absolute lg:top-[500px] lg:left-[250px] lg:w-[400px] cursor-pointer transition-opacity duration-300 opacity-0 hover:opacity-100 md:top-[200px] md:left-[100px] md:w-[300px]"
             />
             <div className="relative mt-0">
               <Image
@@ -907,7 +907,7 @@ export default function Home() {
                 alt="savegabage"
                 width={300}
                 height={300}
-                className={`absolute top-[60px] right-[200px] cursor-pointer transition-transform duration-500 ease-out  md:top-[40px] md:left-[650px] md:w-[150px] ${
+                className={`absolute lg:top-[60px] lg:left-[1350px] lg:w-[300px]  cursor-pointer transition-transform duration-500 ease-out  md:top-[40px] md:left-[650px] md:w-[150px] ${
                   isSavegabageVisible
                     ? "scale-100 opacity-100"
                     : "scale-50 opacity-0"
@@ -920,7 +920,7 @@ export default function Home() {
                   alt="big1"
                   width={200}
                   height={200}
-                  className="absolute top-[100px] left-[250px] cursor-pointer transition-opacity duration-300 animate-bounce md:top-[130px] md:left-[650px] md:w-[140px]"
+                  className="absolute lg:top-[100px] lg:left-[250px] lg:w-[200px] cursor-pointer transition-opacity duration-300 animate-bounce md:top-[130px] md:left-[650px] md:w-[140px]"
                   onClick={() => setShowBig1(false)}
                 />
               )}
@@ -930,7 +930,7 @@ export default function Home() {
                   alt="big2"
                   width={200}
                   height={200}
-                  className="absolute top-[450px] left-[300px] cursor-pointer transition-opacity duration-300 animate-bounce  md:top-[300px] md:left-[630px] md:w-[140px]"
+                  className="absolute lg:top-[450px] lg:left-[300px] lg:w-[200px] cursor-pointer transition-opacity duration-300 animate-bounce  md:top-[300px] md:left-[630px] md:w-[140px]"
                   onClick={() => setShowBig2(false)}
                 />
               )}
@@ -940,7 +940,7 @@ export default function Home() {
                   alt="big3"
                   width={200}
                   height={200}
-                  className="absolute top-[500px] right-[250px] cursor-pointer transition-opacity duration-300 animate-bounce  md:top-[300px] md:right-[630px] md:w-[140px]"
+                  className="absolute lg:top-[500px] lg:right-[250px] lg:w-[200px] cursor-pointer transition-opacity duration-300 animate-bounce  md:top-[300px] md:right-[630px] md:w-[140px]"
                   onClick={() => setShowBig3(false)}
                 />
               )}
@@ -950,7 +950,7 @@ export default function Home() {
                   alt="big4"
                   width={200}
                   height={200}
-                  className="absolute top-[150px] right-[350px] cursor-pointer transition-opacity duration-300 animate-bounce md:top-[130px] md:right-[430px] md:w-[140px]" 
+                  className="absolute lg:top-[150px] lg:right-[350px] lg:w-[200px] cursor-pointer transition-opacity duration-300 animate-bounce md:top-[130px] md:right-[430px] md:w-[140px]" 
                   onClick={() => setShowBig4(false)}
                 />
               )}
@@ -960,7 +960,7 @@ export default function Home() {
                   alt="big5"
                   width={150}
                   height={150}
-                  className="absolute top-[300px] right-[800px] cursor-pointer transition-opacity duration-300 animate-bounce md:top-[130px] md:right-[700px] md:w-[140px]"
+                  className="absolute lg:top-[300px] lg:right-[800px] lg:w-[150px] cursor-pointer transition-opacity duration-300 animate-bounce md:top-[130px] md:right-[700px] md:w-[140px]"
                   onClick={() => setShowBig5(false)}
                 />
               )}
@@ -970,7 +970,7 @@ export default function Home() {
                   alt="thankyou"
                   width={1000}
                   height={1000}
-                  className="absolute top-[180px] right-[400px] cursor-pointer transition-opacity duration-300 md:top-[130px] md:right-[200px] md:w-[600px]"
+                  className="absolute lg:top-[180px] lg:right-[400px] lg:w-[1000px] cursor-pointer transition-opacity duration-300 md:top-[130px] md:right-[200px] md:w-[600px]"
                 />
               )}
             </div>
@@ -985,14 +985,14 @@ export default function Home() {
                 alt="street"
                 width={1920}
                 height={1000}
-                className="object-cover w-[1920px] h-full md:w-[932px]h-[100px]"
+                className="object-cover lg:w-[1920px] h-full md:w-[932px]h-[100px]"
               />
               <Image
                 src="/assets/street2.jpg"
                 alt="street2"
                 width={1920}
                 height={1000}
-                className="object-cover w-[1920px] h-full md:w-[932px]h-[100px]"
+                className="object-cover lg:w-[1920px] h-full md:w-[932px]h-[100px]"
               />
               <Image
                 src={
@@ -1003,7 +1003,7 @@ export default function Home() {
                 alt="yekkaya"
                 width={800}
                 height={800}
-                className="absolute top-[400px] left-[2050px] cursor-pointer image-hover-scale  md:top-[230px] md:left-[1200px] md:w-[600px]"
+                className="absolute lg:top-[500px] lg:left-[2650px] lg:w-[1200px] cursor-pointer image-hover-scale  md:top-[230px] md:left-[1200px] md:w-[600px]"
                 onClick={() => setIsYekkayaFront(!isYekkayaFront)}
               />
               <Image
@@ -1011,28 +1011,28 @@ export default function Home() {
                 alt="recycle1"
                 width={1920}
                 height={1000}
-                className="object-cover w-[1920px] h-full md:w-[932px]h-[100px]"
+                className="object-cover lg:w-[1920px] h-full md:w-[932px]h-[100px]"
               />
               <Image
                 src="/assets/recycle12.jpg"
                 alt="recycle12"
                 width={1920}
                 height={1000}
-                className="object-cover w-[1920px] h-full md:w-[932px]h-[100px]"
+                className="object-cover lg:w-[1920px] h-full md:w-[932px]h-[100px]"
               />
               <Image
                 src="/assets/lang.png"
                 alt="lang"
                 width={800}
                 height={800}
-                className="absolute top-[575px] left-[3700px] md:top-[340px] md:left-[2200px] md:w-[500px]"
+                className="absolute lg:top-[800px] lg:left-[4800px] lg:w-[800px] md:top-[340px] md:left-[2200px] md:w-[500px]"
               />
               <Image
                 src="/assets/btsleep.png"
                 alt="btsleep"
                 width={300}
                 height={300}
-                className={`absolute top-[590px] left-[3750px] cursor-pointer transition-transform duration-1000 z-10 
+                className={`absolute lg:top-[790px] lg:left-[4850px] lg:w-[300px] cursor-pointer transition-transform duration-1000 z-10 
           animate-glow  md:top-[345px] md:left-[2230px] md:w-[200px] ${shifted ? "translate-x-[245px]" : "translate-x-0"}`}
                 onClick={handleFlaskClick}
               />
@@ -1042,7 +1042,7 @@ export default function Home() {
                   alt="typing"
                   width={700}
                   height={700}
-                  className="absolute top-[300px] left-[3750px]  md:top-[150px] md:left-[2300px] md:w-[500px]"
+                  className="absolute lg:top-[300px] lg:left-[4900px] lg:w-[700px]  md:top-[150px] md:left-[2300px] md:w-[500px]"
                 />
               ) : (
                 <Image
@@ -1050,7 +1050,7 @@ export default function Home() {
                   alt="text1"
                   width={700}
                   height={700}
-                  className="absolute top-[240px] left-[3750px] md:top-[150px] md:left-[2300px] md:w-[500px]"
+                  className="absolute top-[300px] lg:left-[4900px] lg:w-[700px] md:top-[150px] md:left-[2300px] md:w-[400px]"
                 />
               )}
               <Image
@@ -1058,7 +1058,7 @@ export default function Home() {
                 alt="pbtone"
                 width={400}
                 height={400}
-                className="absolute top-[120px] left-[4480px] cursor-pointer glow-effect md:top-[80px] md:left-[2690px] md:w-[230px]"
+                className="absolute lg:top-[330px] lg:left-[5580px] lg:w-[400px] cursor-pointer glow-effect md:top-[80px] md:left-[2690px] md:w-[230px]"
                 onClick={() => setIsImageChanged(!isImageChanged)}
                 title="คลิกเพื่อเปลี่ยนภาพ"
               />
@@ -1069,7 +1069,7 @@ export default function Home() {
                 alt="btgo"
                 width={100}
                 height={100}
-                className={`absolute left-[4635px] transition-all duration-[2000ms] ease-linear md:top-[200px] md:left-[2780px] md:w-[50px] ${
+                className={`absolute lg:left-[5725px] lg:top-[500px] lg:w-[100px]  transition-all duration-[2000ms] ease-linear md:top-[200px] md:left-[2780px] md:w-[50px] ${
                   isImageChanged
                     ? "top-[200px] opacity-0"
                     : "top-[400px] opacity-100"
@@ -1082,7 +1082,7 @@ export default function Home() {
                 alt="typing"
                 width={700} // กำหนดความกว้างตรงนี้
                 height={700} // กำหนดความสูงตรงนี้
-                className={`absolute transition-all duration-1000 md:top-[50px] md:left-[2960px] md:w-[400px] md:h-[80px] ${
+                className={`absolute transition-all duration-1000 md:top-[50px] md:left-[2960px] md:w-[400px] md:h-[80px] lg:w-[700px] lg:left-[6200px] lg:top-[200px] lg:h-[110px] ${
                   isImageChanged
                     ? "top-[80px] left-[5000px]"
                     : "h-[100px] top-[100px] left-[5000px]"
@@ -1093,7 +1093,7 @@ export default function Home() {
                 alt="new"
                 width={1000}
                 height={1000}
-                className="absolute top-[280px] left-[4850px] cursor-pointer glow-effect  md:top-[180px] md:left-[2920px] md:w-[550px] "
+                className="absolute lg:top-[480px] lg:left-[6000px] lg:w-[1000px] cursor-pointer glow-effect  md:top-[180px] md:left-[2920px] md:w-[550px] "
                 onClick={handleNewClick}
               />
 
@@ -1102,7 +1102,7 @@ export default function Home() {
                 alt="btpt"
                 width={40}
                 height={40}
-                className={`absolute top-[400px] left-[5250px] transition-transform duration-1000  md:top-[245px] md:left-[3150px] md:w-[25px] ${
+                className={`absolute lg:top-[600px] lg:left-[6400px] lg:w-[40px] transition-transform duration-1000  md:top-[245px] md:left-[3150px] md:w-[25px] ${
                   isMoved ? "translate-x-[250px]" : "translate-x-0"
                 }`} // เลื่อนเมื่อ isMoved เป็น true
               />
@@ -1118,49 +1118,49 @@ export default function Home() {
                 alt="textwallnew"
                 width={600}
                 height={600}
-                className="absolute top-[60px] left-[6380px]  md:top-[30px] md:left-[3750px] md:w-[400px] "
+                className="absolute lg:top-[60px] lg:left-[8280px] lg:w-[600px]  md:top-[30px] md:left-[3750px] md:w-[400px] "
               />
               <Image
                 src="/assets/kapao.png"
                 alt="kapao"
                 width={300}
                 height={300}
-                className="absolute top-[280px] left-[6205px] transition-opacity duration-500 ease-in-out opacity-100 hover:opacity-100 md:top-[170px] md:left-[3680px] md:w-[180px] "
+                className="absolute lg:top-[400px] lg:left-[7950px] lg:w-[300px] transition-opacity duration-500 ease-in-out opacity-100 hover:opacity-100 md:top-[170px] md:left-[3675px] md:w-[180px] "
               />
               <Image
                 src="/assets/kapaoback.png"
                 alt="kapaoback"
                 width={300}
                 height={300}
-                className="absolute top-[190px] left-[6160px] transition-transform duration-500 ease-in-out scale-100 opacity-0 hover:scale-110 hover:opacity-100 md:top-[100px] md:left-[3650px] md:w-[180px] "
+                className="absolute lg:top-[340px] lg:left-[7950px] lg:w-[300px] transition-transform duration-500 ease-in-out scale-100 opacity-0 hover:scale-110 hover:opacity-100 md:top-[100px] md:left-[3650px] md:w-[180px] "
               />
               <Image
                 src="/assets/btblue.png"
                 alt="btblue"
                 width={300}
                 height={300}
-                className="absolute top-[300px] left-[6540px] transition-opacity duration-500 ease-in-out opacity-100 hover:opacity-100 md:top-[180px] md:left-[3880px] md:w-[180px] "
+                className="absolute lg:top-[420px] lg:left-[8400px] lg:w-[300px] transition-opacity duration-500 ease-in-out opacity-100 hover:opacity-100 md:top-[180px] md:left-[3880px] md:w-[180px] "
               />
               <Image
                 src="/assets/btblueback.png"
                 alt="btblueback"
                 width={340}
                 height={340}
-                className="absolute top-[190px] left-[6520px] transition-transform duration-500 ease-in-out scale-100 opacity-0 hover:scale-110 hover:opacity-100 md:top-[120px] md:left-[3880px] md:w-[180px] "
+                className="absolute lg:top-[340px] lg:left-[8400px] lg:w-[340px] transition-transform duration-500 ease-in-out scale-100 opacity-0 hover:scale-110 hover:opacity-100 md:top-[120px] md:left-[3880px] md:w-[180px] "
               />
               <Image
                 src="/assets/sh.png"
                 alt="sh"
                 width={300}
                 height={300}
-                className="absolute top-[280px] left-[6870px] transition-opacity duration-500 ease-in-out opacity-100 hover:opacity-100  md:top-[170px] md:left-[4075px] md:w-[180px] "
+                className="absolute lg:top-[390px] lg:left-[8820px] lg:w-[300px] transition-opacity duration-500 ease-in-out opacity-100 hover:opacity-100  md:top-[170px] md:left-[4075px] md:w-[180px] "
               />
               <Image
                 src="/assets/shback.png"
                 alt="shback"
                 width={300}
                 height={300}
-                className="absolute top-[190px] left-[6915px] transition-transform duration-500 ease-in-out scale-100 opacity-0 hover:scale-110 hover:opacity-100 md:top-[110px] md:left-[4100px] md:w-[180px]"
+                className="absolute lg:top-[340px] lg:left-[8820px] lg:w-[300px] transition-transform duration-500 ease-in-out scale-100 opacity-0 hover:scale-110 hover:opacity-100 md:top-[110px] md:left-[4100px] md:w-[180px]"
               />
             </div>
 
@@ -1173,20 +1173,20 @@ export default function Home() {
                 alt="carpao"
                 width={700}
                 height={700}
-                className="relative z-10 md:top-[-80px] md:right-[-10px] md:w-[400px]" // carpao อยู่ด้านหน้า
+                className="relative z-10 md:top-[-80px] md:right-[-10px] md:w-[400px] lg:w-[700px] lg:top-[100px] lg-right-[0px]" // carpao อยู่ด้านหน้า
               />
               <Image
                 src="/assets/kaya.png"
                 alt="kaya"
                 width={300}
                 height={300}
-                className="absolute top-[-130px] left-[60px] z-0 animate-[wiggle_0.8s_ease-in-out_infinite] md:top-[-150px] md:right-[-10px] md:w-[200px]" // kaya อยู่ด้านหลัง
+                className="absolute lg:top-[0px] lg:left-[60px] z-0 animate-[wiggle_0.8s_ease-in-out_infinite] md:top-[-170px] md:right-[150px] md:w-[200px]" // kaya อยู่ด้านหลัง
                 onClick={moveCar}
               />
             </div>
           </div>
         </div>
-        <div className="relative min-h-screen w-full md:w-[932px]h-[100px]">
+        <div className="relative lg:min-h-screen lg:w-full md:w-[932px]h-[100px]">
           <Image
             src="/assets/bg4.jpg"
             alt="bg4"
@@ -1203,7 +1203,7 @@ export default function Home() {
               alt="textworld"
               width={800}
               height={800}
-              className="absolute top-20 left-1/2 -translate-x-1/2 -translate-y-1/2  md:top-[30px] md:right-[10px] md:w-[500px] "
+              className="absolute lg:top-20 lg:left-1/2 lg:w-[800px] -translate-x-1/2 -translate-y-1/2  md:top-[30px] md:right-[10px] md:w-[500px] "
             />
             {/* textworld2.png แสดงหลัง 1 วินาที */}
             <Image
@@ -1211,7 +1211,7 @@ export default function Home() {
               alt="textworld2"
               width={400}
               height={400}
-              className={`absolute top-44 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-opacity duration-500  md:top-[90px] md:right-[10px] md:w-[200px] ${
+              className={`absolute lg:top-44 lg:left-1/2 lg:w-[400px] -translate-x-1/2 -translate-y-1/2 transition-opacity duration-500  md:top-[90px] md:left-[460px] md:w-[200px] ${
                 showText ? "opacity-100" : "opacity-0"
               }`}
             />
@@ -1222,7 +1222,7 @@ export default function Home() {
               alt="hand"
               width={550}
               height={550}
-              className="absolute top-3/4 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse cursor-pointer md:top-[310px] md:right-[10px] md:w-[350px]"
+              className="absolute lg:top-3/4 lg:left-1/2 lg:w-[550px] -translate-x-1/2 -translate-y-1/2 animate-pulse cursor-pointer md:top-[350px] md:left-[470px] md:w-[350px]"
               onClick={handleClick}
             />
 
@@ -1232,7 +1232,7 @@ export default function Home() {
               alt="world"
               width={500}
               height={500}
-              className={`absolute top-[430px] left-[780px] -translate-x-1/2 -translate-y-1/2 transition-opacity duration-500  md:top-[230px] md:left-[460px] md:w-[280px] ${
+              className={`absolute lg:top-[490px] lg:left-[950px] lg:w-[500px] -translate-x-1/2 -translate-y-1/2 transition-opacity duration-500  md:top-[230px] md:left-[460px] md:w-[280px] ${
                 showWorld ? "opacity-100" : "opacity-0"
               }`}
             />
@@ -1253,7 +1253,7 @@ export default function Home() {
             alt="rdy"
             width={200}
             height={200}
-            className="absolute top-[7580] left-[300] cursor-pointer md:top-[4410px] md:left-[170px] md:w-[140px]"
+            className="absolute lg:top-[9240px] lg:left-[400px] lg:w-[200px] cursor-pointer md:top-[4370px] md:left-[170px] md:w-[140px]"
             onClick={() => handleToggle("rdy")}
           />
           {activeImage === "rdy" && (
@@ -1263,21 +1263,21 @@ export default function Home() {
                 alt="rd1"
                 width={750}
                 height={750}
-                className="absolute transition-opacity duration-500 top-[7800] left-[475] md:top-[4510px] md:left-[245px] md:w-[500px]"
+                className="absolute transition-opacity duration-500 lg:top-[9540px] lg:left-[640px] lg:w-[750px] md:top-[4510px] md:left-[245px] md:w-[500px]"
               />
               <Image
                 src="/assets/rdtext.png"
                 alt="rdtext"
                 width={460}
                 height={460}
-                className="absolute transition-opacity duration-500 top-[7794] left-[580]  shadow-[4px_-4px_8px_rgba(0,0,0,0.1)] md:top-[4510px] md:left-[320px] md:w-[300px]"
+                className="absolute transition-opacity duration-500 lg:top-[9540px] lg:left-[740px] lg:w-[460px]  shadow-[4px_-4px_8px_rgba(0,0,0,0.1)] md:top-[4510px] md:left-[320px] md:w-[300px]"
               />
               <Image
                 src="/assets/rdtext1.png"
                 alt="rdtext1"
                 width={450}
                 height={450}
-                className="absolute transition-opacity duration-500 top-[7800] left-[580] md:top-[4530px] md:left-[345px] md:w-[250px] "
+                className="absolute transition-opacity duration-500 lg:top-[9540px] lg:left-[740px] lg:w-[450px] md:top-[4530px] md:left-[345px] md:w-[250px] "
               />
             </>
           )}
@@ -1288,7 +1288,7 @@ export default function Home() {
             alt="ruy"
             width={200}
             height={200}
-            className="absolute top-[7580] left-[700] cursor-pointer md:top-[4410px] md:left-[400px] md:w-[140px] "
+            className="absolute lg:top-[9240px] lg:left-[850px] lg:w-[200px] cursor-pointer md:top-[4370px] md:left-[400px] md:w-[140px] "
             onClick={() => handleToggle("ruy")}
           />
           {activeImage === "ruy" && (
@@ -1298,21 +1298,21 @@ export default function Home() {
                 alt="ru1"
                 width={750}
                 height={750}
-                className="absolute transition-opacity duration-500 top-[7725] left-[450] md:top-[4460px] md:left-[233px] md:w-[500px]"
+                className="absolute transition-opacity duration-500 lg:top-[9540px] lg:left-[640px] lg:w-[750px] md:top-[4460px] md:left-[233px] md:w-[500px]"
               />
               <Image
                 src="/assets/rutext.png"
                 alt="rut"
                 width={460}
                 height={460}
-                className="absolute transition-opacity duration-500 top-[7794] left-[580]  shadow-[4px_-4px_8px_rgba(0,0,0,0.1)] md:top-[4510px] md:left-[320px] md:w-[300px]"
+                className="absolute transition-opacity duration-500 lg:top-[9590px] lg:left-[765px] lg:w-[460px] shadow-[4px_-4px_8px_rgba(0,0,0,0.1)] md:top-[4510px] md:left-[320px] md:w-[300px]"
               />
               <Image
                 src="/assets/rutext1.png"
                 alt="rut1"
                 width={460}
                 height={460}
-                className="absolute transition-opacity duration-500 top-[7795] left-[580] md:top-[4530px] md:left-[345px] md:w-[250px] "
+                className="absolute transition-opacity duration-500 lg:top-[9590px] lg:left-[765px] lg:w-[460px] md:top-[4530px] md:left-[345px] md:w-[250px] "
               />
             </>
           )}
@@ -1323,7 +1323,7 @@ export default function Home() {
             alt="rcy"
             width={200}
             height={200}
-            className="absolute top-[7580] left-[1100] cursor-pointer md:top-[4410px] md:left-[625px] md:w-[140px] "
+            className="absolute lg:top-[9240px] lg:left-[1300] lg:w-[200px] cursor-pointer md:top-[4370px] md:left-[625px] md:w-[140px] "
             onClick={() => handleToggle("rcy")}
           />
           {activeImage === "rcy" && (
@@ -1333,21 +1333,21 @@ export default function Home() {
                 alt="rc1"
                 width={910}
                 height={910}
-                className="absolute transition-opacity duration-500 top-[7720] left-[366] md:top-[4474px] md:left-[210px] md:w-[550px] "
+                className="absolute transition-opacity duration-500 lg:top-[9480px] lg:left-[565px] lg:w-[910px]  md:top-[4474px] md:left-[210px] md:w-[550px] "
               />
               <Image
                 src="/assets/rctext.png"
                 alt="rct"
                 width={465}
                 height={465}
-                className="absolute transition-opacity duration-500 top-[7795] left-[565]  shadow-[4px_-4px_8px_rgba(0,0,0,0.1)] md:top-[4510px] md:left-[320px] md:w-[300px] "
+                className="absolute transition-opacity duration-500 lg:top-[9550px] lg:left-[765px] lg:w-[460px] shadow-[4px_-4px_8px_rgba(0,0,0,0.1)] md:top-[4510px] md:left-[320px] md:w-[300px] "
               />
               <Image
                 src="/assets/rctext1.png"
                 alt="rct1"
                 width={440}
                 height={440}
-                className="absolute transition-opacity duration-500 top-[7795] left-[580] md:top-[4530px] md:left-[345px] md:w-[250px] "
+                className="absolute transition-opacity duration-500 lg:top-[9550px] lg:left-[765px] lg:w-[460px] md:top-[4530px] md:left-[345px] md:w-[250px] "
               />
             </>
           )}
@@ -1361,7 +1361,7 @@ export default function Home() {
             className="object-cover w-full h-full"
           />
 
-          <div ref={ref} className="absolute top-[115px] right-[350px] md:top-[20px] md:right-[270px] md:w-[200px]">
+          <div ref={ref} className="absolute lg:top-[60px] lg:right-[500px] lg:w-[500px] md:top-[20px] md:right-[270px] md:w-[200px]">
             <Image
               src="/assets/textwall6.png"
               alt="textwall6"
@@ -1382,7 +1382,7 @@ export default function Home() {
             style={{
               right: `${position}px`,
             }}
-            className="absolute top-[650px] transition-all duration-500 md:top-[310px] md:left-[420px] md:w-[100px] "
+            className="absolute lg:top-[675px] lg:w-[150px] lg:left-[850px] transition-all duration-500 md:top-[310px] md:left-[420px] md:w-[100px] "
           />
         </div>
 
@@ -1392,7 +1392,7 @@ export default function Home() {
             alt="pojadtum"
             width={150}
             height={150}
-            className="absolute top-[750px] right-[750px] md:top-[500px] md:right-[410px] md:w-[100px] "
+            className="absolute lg:top-[1100px] lg:w-[150px] lg:right-[880px] md:top-[500px] md:right-[410px] md:w-[100px] "
           />
              <Image
       ref={imgRef}
@@ -1432,7 +1432,7 @@ export default function Home() {
             alt="retern"
             width={70}
             height={70}
-            className="absolute top-[480px] right-[420px]  cursor-pointer md:top-[450px] md:right-[410px] md:w-[100px]"
+            className="absolute lg:top-[780px] lg:right-[420px]  cursor-pointer md:top-[450px] md:right-[410px] md:w-[100px]"
             onClick={scrollToTop}
           />
         </div>
