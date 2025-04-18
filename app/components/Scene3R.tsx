@@ -27,14 +27,14 @@ export default function Scene3R() {
       <div className="flex flex-col items-center justify-center mt-10">
         
         <div className="relative z-10 flex flex-col sm:flex-row items-center justify-center 
-                    gap-28 sm:gap-24 lg:gap-40 xl:gap-72 mb-6">
+                    gap-24 sm:gap-24 lg:gap-40 xl:gap-44 mb-6">
           
           {/* ♻️ Reuse */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="relative top-[10px] sm:top-[-30px]"
+            className="relative top-[8px] sm:top-[-35px]"
           >
             <Image
               src={activeImage === 'reuse' ? '/assets/ruy.png' : '/assets/ru.png'}
@@ -51,7 +51,7 @@ export default function Scene3R() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative top-[10px] sm:top-[-30px]"
+            className="relative top-[10px] sm:top-[-35px]"
           >
             <Image
               src={activeImage === 'reduce' ? '/assets/rdy.png' : '/assets/rd.png'}
@@ -68,7 +68,7 @@ export default function Scene3R() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="relative top-[10px] sm:top-[-30px]"
+            className="relative top-[10px] sm:top-[-35px]"
           >
             <Image
               src={activeImage === 'recycle' ? '/assets/rcy.png' : '/assets/rc.png'}

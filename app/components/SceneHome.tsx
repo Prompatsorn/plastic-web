@@ -9,9 +9,7 @@ export default function SceneHome() {
   const [isFading, setIsFading] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const [showRotateNotice, setShowRotateNotice] = useState(false);
-  const [xPos, setXPos] = useState(0);
-  const [, setIsLocked] = useState(false);
-  const [moved, setMoved] = useState(false);
+
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const handlePlay = () => {
@@ -66,30 +64,8 @@ export default function SceneHome() {
     };
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 0.1 && !moved) {
-        setIsLocked(true);
-        setXPos(200);
-        setMoved(true);
-
-        setTimeout(() => {
-          window.scrollTo({
-            top: 500,
-            behavior: 'smooth',
-          });
-
-          setTimeout(() => {
-            setIsLocked(false);
-          }, 1000);
-        }, 1000);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [moved]);
-
+  
+   
   return (
     <div
       id="scene-home"
@@ -136,18 +112,7 @@ export default function SceneHome() {
             height={500}
             className="w-[40vw] max-w-[1000px] min-w-[150px] h-auto"
           />
-          <Image
-            src="/assets/car.png"
-            alt="car"
-            width={150}
-            height={150}
-            className="absolute top-[190%] left-[10%] w-1/5 h-auto sm:w-1/4"
-            style={{
-              position: 'absolute',
-              transform: `translateX(${xPos}px)`,
-              transition: 'transform 1s ease-in-out',
-            }}
-          />
+          {/* ลบ car.png ออกไป */}
           <Image
             src="/assets/scroll down.png"
             alt="topic"

@@ -43,7 +43,7 @@ export default function SceneRecycle1() {
       {/* Scene 1 */}
       <section id="scene-recycle1"  className="relative w-full min-h-screen overflow-hidden">
         <Image
-          src="/assets/recyclee.png"
+          src="/assets/recycle1.png"
           alt="recycle background"
           width={1920}
           height={1080}
@@ -68,7 +68,7 @@ export default function SceneRecycle1() {
         />
       </div>
 
-        <div className="absolute top-[60%] right-[20%] w-[40vw] max-w-[1000px] z-10">
+        <div className="absolute top-[60%] right-[10%] w-[40vw] max-w-[1000px] z-10">
           <Image
             src="/assets/textrecycle1.png"
             alt="text"
@@ -84,16 +84,9 @@ export default function SceneRecycle1() {
             startMoving ? 'translate-x-[100vw]' : ''
           }`}
         >
-          <div className="relative w-[180px] sm:w-[300px] md:w-[320px] lg:w-[600px] xl:w-[650px] h-auto">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-[60%] z-10">
-              <Image
-                src="/assets/garbage.png"
-                alt="garbage"
-                width={500}
-                height={500}
-                className="w-[40px] sm:w-[50px] md:w-[60px] lg:w-[70px] xl:w-[80px] h-auto"
-              />
-            </div>
+          
+          
+            <div className="relative w-[180px] sm:w-[300px] md:w-[320px] lg:w-[600px] xl:w-[650px] h-auto">
             <Image
               src="/assets/cargarbage.png"
               alt="car"
@@ -102,6 +95,15 @@ export default function SceneRecycle1() {
               className="w-full h-auto relative z-20"
             />
           </div>
+          <div className="absolute bottom-[85%] left-[15%] z-10">
+  <Image
+    src="/assets/garbage.png"
+    alt="garbage"
+    width={500}
+    height={500}
+    className="w-[120px] sm:w-[150px] md:w-[180px] lg:w-[200px] xl:w-[220px] h-auto animate-bounce"
+  />
+</div>
         </div>
       </section>
 
@@ -133,21 +135,22 @@ export default function SceneRecycle1() {
           />
         </div>
 
-        {/* 📷 info image shown on click */}
-        {showInfo && (
-          <div
-            className="absolute bottom-[30%]  lg:top-96 sm:top-36 md:top-44 left-1/2 -translate-x-1/2 z-30 cursor-pointer"
-            onClick={() => setShowInfo(false)}
-          >
-            <Image
-              src="/assets/info.png"
-              alt="info"
-              width={400}
-              height={400}
-              className="w-[40vw] max-w-[500px] h-auto rounded-lg shadow-lg"
-            />
-          </div>
-        )}
+       {/* 📷 info image shown on click */}
+{showInfo && (
+  <div
+    className="absolute bottom-[30%] lg:top-96 sm:top-36 md:top-44 left-1/2 -translate-x-1/2 z-30 cursor-pointer"
+    onClick={() => setShowInfo(false)}
+  >
+    <Image
+      src="/assets/info.png"
+      alt="info"
+      width={350} // ลดขนาดลงจาก 400
+      height={350} // ลดขนาดลงจาก 400
+      className="w-[30vw] max-w-[400px] h-auto rounded-lg shadow-lg"
+    />
+  </div>
+)}
+
       </section>
     </>
   );

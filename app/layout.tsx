@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "plastic-web",
-  description: "ตั้งชื่อเอง",
+  description: "plastic-bottle-journey",
 };
 
 // ใช้ export function แทน export default เพื่อหลีกเลี่ยงการซ้ำกัน

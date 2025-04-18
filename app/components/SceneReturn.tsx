@@ -21,11 +21,8 @@ export default function SceneReturn() {
         priority
       />
 
-      {/* 🔙 ปุ่มย้อนกลับ */}
-      <div
-        className="absolute bottom-10 lg:left-[800px] sm:left-[380px] md:left-[400px] -translate-x-1/2 z-50 animate-bounce"
-        onClick={handleBackClick}
-      >
+      {/* 🔙 ปุ่มย้อนกลับ (แก้ให้กลางแน่นอน) */}
+      <div className="absolute bottom-10 left-0 w-full flex justify-center z-50 animate-bounce" onClick={handleBackClick}>
         <Image
           src="/assets/buttonreturn.png" 
           alt="button"
@@ -37,4 +34,3 @@ export default function SceneReturn() {
     </section>
   );
 }
-

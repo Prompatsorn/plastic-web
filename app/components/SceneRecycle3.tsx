@@ -2,18 +2,14 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 
 export default function SceneRecycle3() {
   const [showExplanation, setShowExplanation] = useState(false);
-  const [bottleMoved, setBottleMoved] = useState(false);
 
-  const handleBottleClick = () => {
-    if (bottleMoved) {
-      setBottleMoved(false);
+  const handleTypingClick = () => {
+    if (showExplanation) {
       setShowExplanation(false);
     } else {
-      setBottleMoved(true);
       setTimeout(() => setShowExplanation(true), 1000);
     }
   };
@@ -29,8 +25,11 @@ export default function SceneRecycle3() {
         priority
       />
 
-      {/* 💬 typing หรือ text */}
-      <div className="absolute bottom-[30%] right-[10%] z-30">
+      {/* 💬 typing หรือ text - กดได้ */}
+      <div
+        className="absolute bottom-[30%] right-[10%] z-30 cursor-pointer"
+        onClick={handleTypingClick}
+      >
         {!showExplanation ? (
           <Image
             src="/assets/typing.gif"
@@ -49,28 +48,6 @@ export default function SceneRecycle3() {
           />
         )}
       </div>
-
-      {/* 🧴 ขวดที่คลิกได้ */}
-<motion.div
-  initial={{ x: 0 }}
-  animate={bottleMoved ? { x: 300 } : { x: 0 }}
-  transition={{ duration: 1, ease: 'easeInOut' }}
-  onClick={handleBottleClick}
-  className="absolute bottom-[15%] right-[50%] z-40 cursor-pointer"
->
-  <Image
-    src="/assets/bottleonslide.png"
-    alt="bottle on slide"
-    width={300}   
-    height={300}
-    className="w-[30vw] max-w-[500px] 
-    lg:w-[300px]  
-    sm:w-[150px]  
-    md:w-[150px] 
-    h-auto"
-  />
-</motion.div>
     </section>
   );
 }
-
