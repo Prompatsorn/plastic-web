@@ -72,26 +72,24 @@ export default function SceneHome() {
       className="w-full h-screen relative overflow-hidden"
     >
       {showRotateNotice && (
-        <div className="fixed inset-0 bg-[#0078B7] bg-opacity-95 z-[999] flex flex-col justify-center items-center">
-          <Image
-            src="/assets/rotate.gif"
-            alt="rotate"
-            width={300}
-            height={300}
-            className="mb-6"
-          />
-        </div>
-      )}
-
+  <div className="fixed inset-0 z-[999] pointer-events-none">
+    <Image
+      src="/assets/rotate.gif"
+      alt="rotate"
+      fill
+      className="object-cover w-full h-full"
+    />
+  </div>
+)}
       <video
         ref={videoRef}
         src="/assets/Door.mp4"
         muted
         onClick={handlePlay}
         onEnded={handleEnd}
-        className={`absolute top-1/2 left-1/2 w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 z-50 cursor-pointer transition-opacity duration-1000 ${
-          isFading ? 'opacity-0 pointer-events-none' : 'opacity-100'
-        }`}
+        className={`absolute top-1/2 left-1/2 w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 ${
+          isFading ? 'opacity-0 pointer-events-none z-10' : 'opacity-100 z-50'
+        } transition-opacity duration-1000`}
       />
 
       <div className="relative w-full h-auto overflow-hidden">

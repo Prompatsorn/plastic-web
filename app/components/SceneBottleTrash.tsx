@@ -58,10 +58,10 @@ export default function SceneBottleTrash() {
       {/* 🧃 รูปขวด (กดเพื่อเปลี่ยนภาพ) */}
       <div
         onClick={toggleImage}
-        className="absolute top-[40%] left-[20%] w-[40vw] max-w-[1000px] z-20 cursor-pointer transition-transform hover:scale-105"
+        className="absolute top-[45%] left-[20%] w-[60vw] max-w-[1000px] z-20 cursor-pointer transition-transform hover:scale-105"
       >
         <Image
-          src={isClicked ? '/assets/bottlesearchb.png' : '/assets/bottlesearch.png'}
+          src={isClicked ? '/assets/bottleseachb.png' : '/assets/bottleseach.png'}
           alt="bottle info"
           width={1000}
           height={500}

@@ -75,7 +75,7 @@ export default function SceneBeach1() {
       {/* 📝 หัวข้อ */}
         <div
         ref={beachTopicRef}
-        className={`absolute top-[60%] right-[10%] w-[60vw] max-w-[1000px] z-10 transition-all duration-700 ease-out delay-200 ${
+        className={`absolute top-[50%] right-[10%] w-[60vw] max-w-[1000px] z-10 transition-all duration-700 ease-out delay-200 ${
           isBeachTopicVisible
             ? 'translate-y-0 scale-100 opacity-100'
             : 'translate-y-10 scale-95 opacity-0'
@@ -91,7 +91,7 @@ export default function SceneBeach1() {
       </div>
 
       {/* 🗨️ ข้อความประกอบ */}
-      <div className="absolute top-[80%] right-[20%] w-[40vw] max-w-[1000px] z-10">
+      <div className="absolute top-[70%] right-[15%] w-[45vw] max-w-[1000px] z-10">
         <Image
           src="/assets/textbeach1.png"
           alt="text"

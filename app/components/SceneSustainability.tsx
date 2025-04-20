@@ -39,7 +39,7 @@ export default function SceneSustainability() {
             alt="topic"
             width={500}
             height={200}
-            className="w-[40vw] max-w-[1000px] mx-auto"
+            className="w-[80vw] max-w-[1500px] mx-auto"
           />
         </motion.div>
 

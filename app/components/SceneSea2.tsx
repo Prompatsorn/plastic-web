@@ -23,7 +23,7 @@ export default function SceneSea2() {
 
       {/* 🔍 Microbt ตัวค้นหา */}
       <div 
-        className="absolute top-10 left-1/2 z-30 cursor-pointer"
+        className="absolute top-10 left-1/2 -translate-x-1/2   z-30 cursor-pointer"
         onClick={() => setIsMicroClicked(!isMicroClicked)}
       >
         <Image
@@ -31,7 +31,8 @@ export default function SceneSea2() {
           alt="Search icon"
           width={1000}
           height={1000}
-          className="w-[30vw] max-w-[1000px] h-auto"
+          quality={100}
+          className="w-[50vw] max-w-[1000px] h-auto"
         />
       </div>
 
@@ -51,13 +52,13 @@ export default function SceneSea2() {
       </div>
 
       {/* 📝 ข้อความ textsea2.png */}
-      <div className="absolute top-[45%] right-[20%] z-20">
+      <div className="absolute top-[45%] right-[13%] z-20">
         <Image
           src="/assets/textsea2.png"
           alt="Sea Text"
           width={500}
           height={500}
-          className="w-[40vw] max-w-[1500px] h-auto"
+          className="w-[55vw] max-w-[1500px] h-auto"
         />
       </div>
     </section>

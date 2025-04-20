@@ -39,7 +39,7 @@ export default function SceneSea1() {
 
 <div
         ref={seaTopicRef}
-        className={`absolute top-[20%] right-[0%] sm:right-[8%] md:right-[10%] w-[60vw] max-w-[1000px] z-10 transition-all duration-700 ease-out delay-200 ${
+        className={`absolute top-[20%] right-[0%] sm:right-[8%] md:right-[10%] w-[50vw] max-w-[1000px] z-10 transition-all duration-700 ease-out delay-200 ${
           isSeaTopicVisible
             ? 'translate-y-0 scale-100 opacity-100'
             : 'translate-y-10 scale-95 opacity-0'
@@ -55,7 +55,7 @@ export default function SceneSea1() {
       </div>
 
       {/* 🗨️ ข้อความประกอบ */}
-            <div className="absolute top-[40%] right-[10%] sm:right-[20%] md:right-[20%] w-[40vw] max-w-[1000px] z-10">
+            <div className="absolute top-[40%] right-[5%] sm:right-[15%] md:right-[15%] w-[40vw] max-w-[1000px] z-10">
         <Image
           src="/assets/textsea1.png"
           alt="text"
