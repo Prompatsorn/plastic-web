@@ -94,6 +94,8 @@ export default function Scene3R() {
               alt="reduce1"
               width={300}
               height={200}
+              quality={100}
+              unoptimized
               className="w-[220px] sm:w-[350px] md:w-[360px] lg:w-[700px]"
             />
           )}
@@ -103,6 +105,8 @@ export default function Scene3R() {
               alt="reuse1"
               width={300}
               height={200}
+              quality={100}
+              unoptimized
               className="w-[220px] sm:w-[350px] md:w-[360px] lg:w-[700px]"
             />
           )}
@@ -112,6 +116,8 @@ export default function Scene3R() {
               alt="recycle1"
               width={300}
               height={200}
+              quality={100}
+              unoptimized
               className="w-[220px] sm:w-[350px] md:w-[360px] lg:w-[700px]"
             />
           )}
