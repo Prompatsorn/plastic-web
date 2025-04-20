@@ -131,6 +131,8 @@ export default function SceneRecycle1() {
             alt="garbage"
             width={100}
             height={500}
+            quality={100}
+              unoptimized
             className=" sm:w-[300px] lg:w-[500px] md:w-[300px]"
           />
         </div>

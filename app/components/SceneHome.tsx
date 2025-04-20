@@ -64,6 +64,16 @@ export default function SceneHome() {
     };
   }, []);
 
+  useEffect(() => {
+    if (isFading) {
+      const timeout = setTimeout(() => {
+        const content = document.getElementById('after-video');
+        content?.scrollIntoView({ behavior: 'smooth' });
+      }, 1000); // รอ 1 วินาทีหลังเริ่ม fade
+  
+      return () => clearTimeout(timeout);
+    }
+  }, [isFading]);
   
    
   return (

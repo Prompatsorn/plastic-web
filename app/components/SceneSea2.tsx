@@ -58,7 +58,7 @@ export default function SceneSea2() {
           alt="Sea Text"
           width={500}
           height={500}
-          className="w-[55vw] max-w-[1500px] h-auto"
+          className="w-[50vw] max-w-[1500px] h-auto"
         />
       </div>
     </section>
