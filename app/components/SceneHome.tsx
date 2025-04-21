@@ -9,7 +9,6 @@ export default function SceneHome() {
   const [isFading, setIsFading] = useState(false);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const [showRotateNotice, setShowRotateNotice] = useState(false);
-
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const handlePlay = () => {
@@ -64,24 +63,22 @@ export default function SceneHome() {
     };
   }, []);
 
-  
-   
+
   return (
     <div
       id="scene-home"
       className="w-full h-screen relative overflow-hidden"
     >
-      {showRotateNotice && (
-        <div className="fixed inset-0 bg-[#0078B7] bg-opacity-95 z-[999] flex flex-col justify-center items-center">
-          <Image
-            src="/assets/rotate.gif"
-            alt="rotate"
-            width={300}
-            height={300}
-            className="mb-6"
-          />
-        </div>
-      )}
+     {showRotateNotice && (
+  <div className="fixed inset-0 z-[999] pointer-events-none">
+    <Image
+      src="/assets/rotate.gif"
+      alt="rotate"
+      fill
+      className="object-cover w-full h-full"
+    />
+  </div>
+)}
 
       <video
         ref={videoRef}
@@ -89,8 +86,8 @@ export default function SceneHome() {
         muted
         onClick={handlePlay}
         onEnded={handleEnd}
-        className={`absolute top-1/2 left-1/2 w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 transition-opacity duration-1000 ${
-          isFading ? 'opacity-0 pointer-events-none z-10' : 'opacity-100 z-50'
+        className={`absolute top-1/2 left-1/2 w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 z-50 cursor-pointer transition-opacity duration-1000 ${
+          isFading ? 'opacity-0 pointer-events-none' : 'opacity-100'
         }`}
       />
 
@@ -110,9 +107,9 @@ export default function SceneHome() {
             alt="topic"
             width={500}
             height={500}
-            className="w-[40vw] max-w-[1000px] min-w-[150px] h-auto"
+            className="w-[38vw] max-w-[1000px] min-w-[150px] h-auto"
           />
-          {/* ลบ car.png ออกไป */}
+          
           <Image
             src="/assets/scroll down.png"
             alt="topic"
@@ -150,8 +147,6 @@ export default function SceneHome() {
                 alt="main"
                 width={50}
                 height={50}
-                quality={100}
-                unoptimized
                 className="cursor-pointer image-hover-scale sm:w-[100px] sm:h-[30px]"
               />
             </a>
@@ -161,8 +156,6 @@ export default function SceneHome() {
                 alt="effect"
                 width={50}
                 height={50}
-                quality={100}
-                unoptimized
                 className="cursor-pointer image-hover-scale transition sm:w-[100px] sm:h-[30px]"
               />
             </a>
@@ -172,8 +165,6 @@ export default function SceneHome() {
                 alt="howto"
                 width={50}
                 height={50}
-                quality={100}
-                unoptimized
                 className="cursor-pointer image-hover-scale transition sm:w-[100px] sm:h-[30px]"
               />
             </a>
@@ -183,8 +174,6 @@ export default function SceneHome() {
                 alt="pujad"
                 width={50}
                 height={50}
-                quality={100}
-                unoptimized
                 className="cursor-pointer image-hover-scale transition sm:w-[100px] sm:h-[30px]"
               />
             </a>
