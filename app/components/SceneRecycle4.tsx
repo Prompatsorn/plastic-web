@@ -45,6 +45,8 @@ export default function SceneRecycle4() {
           alt="left typing"
           width={250}
           height={120}
+          quality={100}
+          unoptimized
           className="w-[40vw] sm:w-[250px] md:w-[200px] lg:w-[600px] 2xl:w-[800px] h-auto"
         />
       </motion.div>
@@ -66,6 +68,8 @@ export default function SceneRecycle4() {
           alt="right typing"
           width={250}
           height={120}
+          quality={100}
+          unoptimized
           className="w-[40vw]  2xl:w-[1000px]   h-auto"
         />
       </motion.div>

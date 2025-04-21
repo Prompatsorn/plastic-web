@@ -61,7 +61,7 @@ export default function SceneNewBottle() {
              md:w-[20%] md:left-[19%] md:top-[30%]
             
              xl:w-[20%] xl:left-[14%] xl:top-[35%]
-             2xl:w-[20%] 2xl:left-[15%] 2xl:top-[30%]"
+             2xl:w-[20%] 2xl:left-[18%] 2xl:top-[30%]"
   onMouseEnter={() => setIsHoveringKapao(true)}
   onMouseLeave={() => setIsHoveringKapao(false)}
 >
@@ -74,7 +74,7 @@ export default function SceneNewBottle() {
              md:w-[18%] md:left-[18%] md:top-[15%]
              
              xl:w-[22%] xl:left-[11%] xl:top-[15%]
-             2xl:w-[22%] 2xl:left-[11%] 2xl:top-[15%]"
+             2xl:w-[18%] 2xl:left-[18%] 2xl:top-[15%]"
   onMouseEnter={() => setIsHoveringKapao(true)}
   onMouseLeave={() => setIsHoveringKapao(false)}
 >
@@ -109,7 +109,7 @@ export default function SceneNewBottle() {
              md:w-[20%] md:top-[15%] md:left-[40%]
              
              xl:w-[24%] xl:top-[18%] xl:left-[38%]
-             2xl:w-[24%] 2xl:top-[18%] 2xl:left-[38%]"
+             2xl:w-[20%] 2xl:top-[18%] 2xl:left-[40%]"
   onMouseEnter={() => setIsHoveringBottle(true)}
   onMouseLeave={() => setIsHoveringBottle(false)}
 >
@@ -131,7 +131,7 @@ export default function SceneNewBottle() {
              md:w-[18%] md:top-[32%] md:left-[62%]
             
              xl:w-[20%] xl:top-[35%] xl:left-[65%]
-             2xl:w-[18%] 2xl:top-[30%] 2xl:left-[66%]"
+             2xl:w-[18%] 2xl:top-[30%] 2xl:left-[62%]"
   onMouseEnter={() => setIsHoveringShirt(true)}
   onMouseLeave={() => setIsHoveringShirt(false)}
 >
@@ -148,7 +148,7 @@ export default function SceneNewBottle() {
                md:w-[100%] md:top-[-18%] md:left-[10%]
             
                xl:w-[110%] xl:top-[-22%] xl:left-[8%]
-               2xl:w-[130%] 2xl:top-[-26%] 2xl:left-[10%]"
+               2xl:w-[100%] 2xl:top-[-16%] 2xl:left-[-10%]"
     onMouseEnter={() => setIsHoveringShirt(true)}
     onMouseLeave={() => setIsHoveringShirt(false)}
   >

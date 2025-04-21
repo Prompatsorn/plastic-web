@@ -40,13 +40,13 @@ export default function SceneRecycle1() {
 
   return (
     <>
-      <section id="scene-recycle1" className="relative w-full h-screen overflow-hidden">
+     <section id="scene-recycle1" className="relative w-full h-screen overflow-hidden">
   <Image
     src="/assets/recycle1.png"
     alt="recycle background"
     fill
     priority
-    className="object-cover"
+    className="object-cover object-center"
   />
 
 <div
@@ -111,15 +111,14 @@ export default function SceneRecycle1() {
 </div>
         </div>
       </section>
-
-      {/* Scene 2 */}
-      <section id="scene-recycle-2" className="relative w-full h-screen overflow-hidden">
+      
+      <section id="scene-recycle-2" className="relative w-full min-h-screen overflow-hidden z-10">
   <Image
-    src="/assets/recycle2.png"
+    src="/assets/recycle2-2.png"
     alt="recycle background"
     fill
     priority
-    className="object-cover"
+    className="object-fill"
   />
 
         {/* 🗑️ garbage image */}
@@ -134,14 +133,14 @@ export default function SceneRecycle1() {
             height={500}
             quality={100}
               unoptimized
-            className=" sm:w-[300px] lg:w-[500px] md:w-[300px]"
+            className=" sm:w-[300px] lg:w-[500px] md:w-[300px] animate-[wiggle_1s_ease-in-out_infinite]"
           />
         </div>
 
        {/* 📷 info image shown on click */}
 {showInfo && (
   <div
-    className="absolute bottom-[30%]  sm:top-20 md:top-20 xl:top-44 2xl:top-72  left-1/2 -translate-x-1/2 z-30 cursor-pointer"
+    className="absolute bottom-[30%]  sm:top-20 md:top-20 xl:top-44 2xl:top-48  left-1/2 -translate-x-1/2 z-30 cursor-pointer"
     onClick={() => setShowInfo(false)}
   >
     <Image
@@ -149,7 +148,7 @@ export default function SceneRecycle1() {
       alt="info"
       width={350} // ลดขนาดลงจาก 400
       height={350} // ลดขนาดลงจาก 400
-      className=" w-[70vw] sm:w-[30vw] md:w-[30vw]  xl:w-[35vw] 2xl:w-[35vw] h-auto rounded-lg shadow-lg"
+      className=" w-[70vw] sm:w-[30vw] md:w-[30vw]  xl:w-[35vw] 2xl:w-[30vw] h-auto rounded-lg shadow-lg"
     />
   </div>
 )}
