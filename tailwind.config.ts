@@ -13,9 +13,11 @@ export default {
         foreground: "var(--foreground)",
       },
       screens:{
-        "md" : "920px"
+        "md" : "920px",
+        'laptop-md': '1280px',
       }
     },
   },
   plugins: [],
 } satisfies Config;
+

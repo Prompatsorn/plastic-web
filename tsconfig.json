@@ -13,9 +13,9 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": ".",                   // ✅ สำคัญ
+    "baseUrl": ".",                   
     "paths": {
-      "@/*": ["./app/*"]             // ✅ ใช้ @ เป็น root ของ app/
+      "@/*": ["./app/*"]             
     },
     "plugins": [
       {
