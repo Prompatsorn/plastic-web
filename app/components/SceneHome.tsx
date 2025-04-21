@@ -111,12 +111,23 @@ export default function SceneHome() {
           />
           
           <Image
-            src="/assets/scroll down.png"
-            alt="topic"
-            width={200}
-            height={200}
-            className="absolute top-[230%] left-[35%] w-1/5 h-auto lg:w-28 lg:top-[230%] sm:w-14 animate-bounce"
-          />
+  src="/assets/scroll down.png"
+  alt="topic"
+  width={200}
+  height={200}
+  className="absolute 
+             top-[270%] 
+             left-[35%] 
+             w-1/5 
+             h-auto 
+             sm:top-[245%] 
+             md:top-[245%] 
+             lg:top-[255%] 
+             xl:top-[260%] 
+             sm:w-14 
+             lg:w-28 
+             animate-bounce"
+/>
         </div>
 
         <button
