@@ -91,15 +91,14 @@ export default function SceneHome() {
         }`}
       />
 
-      <div className="relative w-full h-auto overflow-hidden">
-        <Image
-          src="/assets/banner.jpg"
-          alt="banner"
-          width={1920}
-          height={1080}
-          className="w-full h-auto object-cover"
-          priority
-        />
+<div className="relative w-full h-screen overflow-hidden">
+  <Image
+    src="/assets/banner.jpg"
+    alt="banner"
+    fill
+    priority
+    className="object-cover w-full h-full"
+  />
 
         <div className="absolute top-[5%] left-1/2 -translate-x-1/2 z-10 w-fit">
           <Image
@@ -107,7 +106,7 @@ export default function SceneHome() {
             alt="topic"
             width={500}
             height={500}
-            className="w-[38vw] max-w-[1000px] min-w-[150px] h-auto"
+            className="w-[35vw] max-w-[1000px] min-w-[150px] h-auto"
           />
           
           <Image

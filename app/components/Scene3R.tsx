@@ -34,14 +34,14 @@ export default function Scene3R() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="relative top-[8px] sm:top-[-35px]"
+            className="relative top-[8px] sm:top-[-30px] md:top-[-35px] xl:top-[-60px] 2xl:top-[-70px]"
           >
             <Image
               src={activeImage === 'reuse' ? '/assets/ruy.png' : '/assets/ru.png'}
               alt="reuse"
               width={120}
               height={120}
-              className="w-[80px] sm:w-[100px] md:w-[120px] lg:w-[200px] cursor-pointer hover:scale-105 transition"
+              className="w-[80px] sm:w-[100px] md:w-[120px] lg:w-[200px] 2xl:w-[300px] cursor-pointer hover:scale-105 transition"
               onClick={() => handleToggle('reuse')}
             />
           </motion.div>
@@ -51,14 +51,14 @@ export default function Scene3R() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative top-[10px] sm:top-[-35px]"
+            className="relative top-[10px] sm:top-[-30px] md:top-[-35px] xl:top-[-60px] 2xl:top-[-70px]"
           >
             <Image
               src={activeImage === 'reduce' ? '/assets/rdy.png' : '/assets/rd.png'}
               alt="reduce"
               width={120}
               height={120}
-              className="w-[80px] sm:w-[100px] md:w-[120px] lg:w-[200px] cursor-pointer hover:scale-105 transition"
+              className="w-[80px] sm:w-[100px] md:w-[120px] lg:w-[200px]  2xl:w-[300px] cursor-pointer hover:scale-105 transition"
               onClick={() => handleToggle('reduce')}
             />
           </motion.div>
@@ -68,14 +68,14 @@ export default function Scene3R() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="relative top-[10px] sm:top-[-35px]"
+            className="relative top-[10px] sm:top-[-30px] md:top-[-35px]  xl:top-[-60px] 2xl:top-[-70px]"
           >
             <Image
               src={activeImage === 'recycle' ? '/assets/rcy.png' : '/assets/rc.png'}
               alt="recycle"
               width={120}
               height={120}
-              className="w-[80px] sm:w-[100px] md:w-[120px] lg:w-[200px] cursor-pointer hover:scale-105 transition"
+              className="w-[80px] sm:w-[100px] md:w-[120px] lg:w-[200px]  2xl:w-[300px] cursor-pointer hover:scale-105 transition"
               onClick={() => handleToggle('recycle')}
             />
           </motion.div>
@@ -96,7 +96,7 @@ export default function Scene3R() {
               height={200}
               quality={100}
               unoptimized
-              className="w-[220px] sm:w-[350px] md:w-[360px] lg:w-[700px]"
+              className="w-[220px] sm:w-[350px] md:w-[360px] lg:w-[700px] 2xl:w-[1000px]"
             />
           )}
           {activeImage === 'reuse' && (
@@ -107,7 +107,7 @@ export default function Scene3R() {
               height={200}
               quality={100}
               unoptimized
-              className="w-[220px] sm:w-[350px] md:w-[360px] lg:w-[700px]"
+              className="w-[220px] sm:w-[350px] md:w-[360px] lg:w-[700px] 2xl:w-[1000px]"
             />
           )}
           {activeImage === 'recycle' && (
@@ -118,7 +118,7 @@ export default function Scene3R() {
               height={200}
               quality={100}
               unoptimized
-              className="w-[220px] sm:w-[350px] md:w-[360px] lg:w-[700px]"
+              className="w-[220px] sm:w-[350px] md:w-[360px] lg:w-[700px] 2xl:w-[1000px]"
             />
           )}
         </motion.div>

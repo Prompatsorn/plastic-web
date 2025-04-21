@@ -42,5 +42,13 @@ export default function RootLayout({
     </html>
   );
 }
-
-
+// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      screens: {
+        'laptop-md': '1280px', // ใช้กับหน้าจอ 1280x800
+      },
+    },
+  },
+}

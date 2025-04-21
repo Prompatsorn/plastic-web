@@ -40,33 +40,38 @@ export default function SceneRecycle1() {
 
   return (
     <>
-      {/* Scene 1 */}
-      <section id="scene-recycle1"  className="relative w-full min-h-screen overflow-hidden">
-        <Image
-          src="/assets/recycle1.png"
-          alt="recycle background"
-          width={1920}
-          height={1080}
-          className="w-full h-auto object-cover"
-          priority
-        />
+      <section id="scene-recycle1" className="relative w-full h-screen overflow-hidden">
+  <Image
+    src="/assets/recycle1.png"
+    alt="recycle background"
+    fill
+    priority
+    className="object-cover"
+  />
 
 <div
-        ref={recycleTopicRef}
-        className={`absolute top-[20%] right-[10%] w-[60vw] max-w-[1000px] z-10 transition-all duration-700 ease-out delay-200 ${
-          isRecycleTopicVisible
-            ? 'translate-y-0 scale-100 opacity-100'
-            : 'translate-y-10 scale-95 opacity-0'
-        }`}
-      >
-        <Image
-          src="/assets/topicrecycle1.png"
-          alt="topic"
-          width={1000}
-          height={500}
-          className="w-full h-auto"
-        />
-      </div>
+  ref={recycleTopicRef}
+  className={`absolute 
+              top-[12%] sm:top-[10%] md:top-[10%]  xl:top-[12%] 2xl:top-[12%]
+              right-[10%] 
+              w-[100vw] sm:w-[65vw] md:w-[60vw] xl:w-[70vw] 2xl:w-[120vw]
+              max-w-[1000px] 
+              z-10 
+              transition-all duration-700 ease-out delay-200
+              ${
+                isRecycleTopicVisible
+                  ? 'translate-y-0 scale-100 opacity-100'
+                  : 'translate-y-10 scale-95 opacity-0'
+              }`}
+>
+  <Image
+    src="/assets/topicrecycle1.png"
+    alt="topic"
+    width={1000}
+    height={500}
+    className="w-full h-auto"
+  />
+</div>
 
         <div className="absolute top-[60%] right-[10%] w-[40vw] max-w-[1000px] z-10">
           <Image
@@ -86,7 +91,7 @@ export default function SceneRecycle1() {
         >
           
           
-            <div className="relative w-[180px] sm:w-[300px] md:w-[320px] lg:w-[600px] xl:w-[650px] h-auto">
+            <div className="relative w-[180px] sm:w-[300px] md:w-[320px]  xl:w-[600px] 2xl:w-[800px] h-auto">
             <Image
               src="/assets/cargarbage.png"
               alt="car"
@@ -108,18 +113,14 @@ export default function SceneRecycle1() {
       </section>
 
       {/* Scene 2 */}
-      <section
-        id="scene-recycle-2"
-        className="relative w-full min-h-screen overflow-hidden"
-      >
-        <Image
-          src="/assets/recycle2.png"
-          alt="recycle background"
-          width={1920}
-          height={1197}
-          className="w-full h-auto object-cover"
-          priority
-        />
+      <section id="scene-recycle-2" className="relative w-full h-screen overflow-hidden">
+  <Image
+    src="/assets/recycle2.png"
+    alt="recycle background"
+    fill
+    priority
+    className="object-cover"
+  />
 
         {/* 🗑️ garbage image */}
         <div
@@ -140,7 +141,7 @@ export default function SceneRecycle1() {
        {/* 📷 info image shown on click */}
 {showInfo && (
   <div
-    className="absolute bottom-[30%] lg:top-96 sm:top-36 md:top-44 left-1/2 -translate-x-1/2 z-30 cursor-pointer"
+    className="absolute bottom-[30%]  sm:top-20 md:top-20 xl:top-44 2xl:top-72  left-1/2 -translate-x-1/2 z-30 cursor-pointer"
     onClick={() => setShowInfo(false)}
   >
     <Image
@@ -148,7 +149,7 @@ export default function SceneRecycle1() {
       alt="info"
       width={350} // ลดขนาดลงจาก 400
       height={350} // ลดขนาดลงจาก 400
-      className="w-[30vw] max-w-[400px] h-auto rounded-lg shadow-lg"
+      className=" w-[70vw] sm:w-[30vw] md:w-[30vw]  xl:w-[35vw] 2xl:w-[35vw] h-auto rounded-lg shadow-lg"
     />
   </div>
 )}

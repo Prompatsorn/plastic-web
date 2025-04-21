@@ -36,7 +36,7 @@ export default function SceneRecycle3() {
             alt="typing hint"
             width={600}
             height={400}
-            className="w-[70vw] sm:w-[40vw] md:w-[40vw] lg:w-[800px] max-w-[800px] h-auto"
+            className="w-[70vw] sm:w-[40vw] md:w-[40vw] xl:w-[700px] max-w-[800px] h-auto"
           />
         ) : (
           <Image
@@ -44,7 +44,7 @@ export default function SceneRecycle3() {
             alt="text explanation"
             width={600}
             height={400}
-            className="w-[70vw] sm:w-[40vw] md:w-[40vw] lg:w-[800px] max-w-[800px] h-auto"
+            className="w-[70vw] sm:w-[40vw] md:w-[40vw] xl:w-[700px] max-w-[800px] h-auto"
           />
         )}
       </div>
