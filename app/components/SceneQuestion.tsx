@@ -45,7 +45,7 @@ export default function SceneQuestion() {
       </div>
 
       {/* ตัวเลือกคำตอบ */}
-      <div className="absolute top-[60%] right-[10%] sm:right-[5%] -translate-y-1/2 flex flex-col gap-4 w-[80vw] sm:w-[30%] md:w-[30%] max-w-[500px] min-w-[240px]">
+      <div className="absolute top-[60%] right-[10%] sm:right-[5%] 2xl:right-[5%] -translate-y-1/2 flex flex-col gap-4 w-[80vw] sm:w-[30%] md:w-[30%] 2xl:w-[40%] max-w-[500px]  min-w-[240px]">
       <Image
               src={c1Image}
               alt="c1 image"

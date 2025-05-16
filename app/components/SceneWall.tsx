@@ -58,7 +58,8 @@ export default function SceneWall() {
       </div>
 
       {/* 🗑️ ถังขยะที่คลิกเปลี่ยนได้ */}
-      <div className="absolute top-[25%] left-1/2 transform -translate-x-1/2 w-full max-w-[1000px] lg:top-56 lg:px-20 px-11 sm:px-12 flex justify-center gap-24 sm:gap-16 lg:gap-32">
+      <div className="absolute top-[25%] left-1/2 transform -translate-x-1/2 w-full max-w-[1000px] lg:top-56 lg:px-20 px-11 
+      sm:px-12 flex justify-center gap-24 sm:gap-16 lg:gap-32 2xl:top-[30%] 2xl:gap-64">
 
         {/* ถังเหลือง */}
         <div onClick={() => setYellowOpen(!yellowOpen)} className="cursor-pointer">
